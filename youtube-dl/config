@@ -1,5 +1,0 @@
-# Youtube-DL Configuration
-
--o ~/Downloads/%(title)s.%(ext)s
---format 'bestvideo+bestaudio'
---prefer-free-formats

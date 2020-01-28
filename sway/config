@@ -1,0 +1,273 @@
+
+
+### Variables
+    # Modifier Key
+    set $mod Mod4
+    # Scripts Directory
+    set $script $HOME/Projects/Scripts
+
+### Startup
+    # Startup Layout
+    exec $script/layout-terminal
+    # Start dunst Notification Daemon
+    # exec dunst
+    # Start mako Notification Daemon
+    exec mako
+    # Start Spotify Daemon
+    exec spotifyd
+    # Start wob daemon
+    exec mkfifo $SWAYSOCK.wob && tail -f $SWAYSOCK.wob | wob
+
+### Terminal
+    set $term alacritty
+    # Tiled
+    bindsym $mod+Return exec $term
+    # Floating 
+    bindsym $mod+Shift+Return exec $term -t $term-floating
+    for_window [title="$term-floating"] floating enable 
+    # Floating Editor
+    for_window [title="floating-editor"] floating enable, resize set width 30 ppt height 75 ppt
+
+### Launchers
+    # Main Launcher
+    #set $menu dmenu_path | wofi --show drun -i | xargs swaymsg exec --¬
+    set $menu $term -t launcher -e zsh -c 'fd . -e desktop /usr/share/app* | xargs basename -s .desktop -a | \
+    fzf -e --history $HOME/.fzf_history | xargs -r swaymsg -t command exec'
+    for_window [app_id="Alacritty" title="launcher"] floating enable, layout tabbed, sticky enable, resize set height 220 px
+    bindsym $mod+d exec $menu 
+    # Fuzzy Launcher 
+    bindsym $mod+Shift+d exec $term -t launcher -e bash -c 'compgen -c | fzf -e --history $HOME/.fzf_history | xargs -r swaymsg -t command exec'
+
+### Calculator
+    for_window [title="qalculator"] floating enable, layout tabbed, sticky enable, resize set width 8 ppt height 16 ppt
+    bindsym $mod+c exec $term -t qalculator -e qalc    
+
+### Browser
+    set $browser firefox-wayland
+    bindsym $mod+Shift+b exec $browser
+    # Firefox Picture-in-Picture Window
+    for_window [app_id="firefox" title="^Picture-in-Picture$"] floating enable, move position 2900 1565, sticky enable
+
+
+### Image Viewer
+    for_window [app_id="imv"] floating enable, border pixel
+
+### Lockscreen
+    set $lock lock && swaylock
+    bindsym Control+$mod+l exec $lock
+
+# Screenshot
+    # Screenshot Directory
+    set $screendir $HOME/Creations/Screens
+    # Whole screen
+    bindsym Print exec IMG=$screendir/$(date +%Y-%m-%d_%H-%M-%S).png && grim $IMG && wl-copy < $IMG
+    # Selection
+    bindsym $mod+Print exec IMG=$screendir/$(date +%Y-%m-%d_%H-%M-%S).png && grim -g "$(slurp)" $IMG && wl-copy < $IMG
+
+### Output Configuration 
+
+    # Wallpaper
+    output * bg #2e3440 solid_color
+
+    # Display Scaling
+    output * scale 1
+
+    # Define Common Colors
+    set $accent #396FE2
+    set $white #ECEFF1
+    set $black #212121
+    set $grey #313131
+    
+    # Set Colors	      border    backgr.   text     indicator child_border
+    client.focused            $accent   $accent   $black   $black    $white
+    client.focused_inactive   $grey     $grey     $accent  $black    $grey
+    client.unfocused          $grey     $grey     $white   $black    $grey
+    client.background         $black
+
+    # Tweaks
+    focus_follows_mouse no
+    gaps inner 30px
+    smart_gaps on
+    default_border pixel #normal, pixel, none
+
+    # Popup [Waybar 'on-click' items: gotop, wavemon, alsamixer] Positioning
+    for_window [title="popup"] floating enable, resize set width 25 ppt height 25 ppt, move position 2850 30
+    
+    # Persist mpv on all Workspaces
+    for_window [app_id="mpv"] sticky enable, floating enable, move position 2800 1650
+
+    # Status Bar
+    bar {
+        swaybar_command waybar
+        # When the status_command prints a new line to stdout, swaybar updates.
+        # The default just shows the current date and time.
+        status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
+    }
+}
+
+### Key bindings
+
+# Basics:
+
+    # Home Row Keys
+    set $left h
+    set $down j
+    set $up k
+    set $right l
+
+    # Kill Focused Window
+    bindsym $mod+Shift+q kill
+
+    # Mouse Manipulate Window
+    floating_modifier $mod normal
+
+    # Reload Sway Config
+    bindsym $mod+Shift+c reload
+
+    # Exit Sway/Wayland
+    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+    for_window [title="^warning$"] floating enable, border pixel
+
+# Media Keys
+   
+    
+    #bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+    #bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+    bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+    bindsym XF86AudioPlay exec playerctl play-pause
+    bindsym XF86AudioNext exec playerctl next
+    bindsym XF86AudioPrev exec playerctl previous
+
+    # Uses wob to display volume level visually
+    bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+ unmute && amixer sget Master | grep 'Right:' | awk -F'[][]' '{ print substr($2, 0, length($2)-1) }' > $SWAYSOCK.wob
+    bindsym XF86AudioLowerVolume exec amixer -q set Master 5%- unmute && amixer sget Master | grep 'Right:' | awk -F'[][]' '{ print substr($2, 0, length($2)-1) }' > $SWAYSOCK.wob
+    #bindsym XF86AudioMute exec (amixer get Master | grep off > /dev/null && amixer -q set Master unmute && amixer sget Master | grep 'Right:' | awk -F'[][]' '{ print substr($2, 0, length($2)-1) }' > $SWAYSOCK.wob) || (amixer -q set Master mute && echo 0 > $SWAYSOCK.wob)
+
+# Moving around:
+
+    # Move your focus around
+    bindsym $mod+$left focus left
+    bindsym $mod+$down focus down
+    bindsym $mod+$up focus up
+    bindsym $mod+$right focus right
+    # or use $mod+[up|down|left|right]
+    bindsym $mod+Left focus left
+    bindsym $mod+Down focus down
+    bindsym $mod+Up focus up
+    bindsym $mod+Right focus right
+
+    # _move_ the focused window with the same, but add Shift
+    bindsym $mod+Shift+$left move left
+    bindsym $mod+Shift+$down move down
+    bindsym $mod+Shift+$up move up
+    bindsym $mod+Shift+$right move right
+    # ditto, with arrow keys
+    bindsym $mod+Shift+Left move left
+    bindsym $mod+Shift+Down move down
+    bindsym $mod+Shift+Up move up
+    bindsym $mod+Shift+Right move right
+
+# Workspaces:
+
+    # Set Workspace Names
+    set $ws1    "1"
+    set $ws2    "2"
+    set $ws3    "3"
+    set $ws4    "4"
+    set $ws5    "5"
+    set $ws6    "6"
+    set $ws7    "7"
+    set $ws8    "8"
+    set $ws9    "9"
+
+    # Switch to workspace
+    bindsym $mod+1 workspace $ws1
+    bindsym $mod+2 workspace $ws2
+    bindsym $mod+3 workspace $ws3
+    bindsym $mod+4 workspace $ws4
+    bindsym $mod+5 workspace $ws5
+    bindsym $mod+6 workspace $ws6
+    bindsym $mod+7 workspace $ws7
+    bindsym $mod+8 workspace $ws8
+    bindsym $mod+9 workspace $ws9
+    bindsym $mod+0 workspace $ws10
+
+    # Move focused container to workspace
+    bindsym $mod+Shift+1 move container to workspace $ws1
+    bindsym $mod+Shift+2 move container to workspace $ws2
+    bindsym $mod+Shift+3 move container to workspace $ws3
+    bindsym $mod+Shift+4 move container to workspace $ws4
+    bindsym $mod+Shift+5 move container to workspace $ws5
+    bindsym $mod+Shift+6 move container to workspace $ws6
+    bindsym $mod+Shift+7 move container to workspace $ws7
+    bindsym $mod+Shift+8 move container to workspace $ws8
+    bindsym $mod+Shift+9 move container to workspace $ws9
+    bindsym $mod+Shift+0 move container to workspace $ws10
+
+    # Switch back to most recent workspace
+    bindsym $mod+Tab workspace back_and_forth
+    workspace_auto_back_and_forth yes
+
+# Layout Control:
+
+    # You can "split" the current object of your focus with
+    # $mod+b or $mod+v, for horizontal and vertical splits
+    # respectively.
+    bindsym $mod+b splith
+    bindsym $mod+v splitv
+
+    # Switch the current container between different layout styles
+    bindsym $mod+s layout stacking
+    bindsym $mod+w layout tabbed
+    bindsym $mod+e layout toggle split
+
+    # Make the current focus fullscreen
+    bindsym $mod+f fullscreen
+
+    # Toggle the current focus between tiling and floating mode
+    bindsym $mod+Shift+space floating toggle
+
+    # Swap focus between the tiling area and the floating area
+    bindsym $mod+space focus mode_toggle
+
+    # Move focus to the parent container
+    bindsym $mod+a focus parent
+#
+# Scratchpad:
+#
+    # Sway has a "scratchpad", which is a bag of holding for windows.
+    # You can send windows there and get them back later.
+
+    # Move the currently focused window to the scratchpad
+    bindsym $mod+Shift+minus move scratchpad
+
+    # Show the next scratchpad window or hide the focused scratchpad window.
+    # If there are multiple scratchpad windows, this command cycles through them.
+    bindsym $mod+minus scratchpad show
+#
+# Resizing containers:
+#
+mode "resize" {
+    # left will shrink the containers width
+    # right will grow the containers width
+    # up will shrink the containers height
+    # down will grow the containers height
+    bindsym $left resize shrink width 10px
+    bindsym $down resize grow height 10px
+    bindsym $up resize shrink height 10px
+    bindsym $right resize grow width 10px
+
+    # ditto, with arrow keys
+    bindsym Left resize shrink width 10px
+    bindsym Down resize grow height 10px
+    bindsym Up resize shrink height 10px
+    bindsym Right resize grow width 10px
+
+    # return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+    bindsym $mod+r mode "resize"
+
+
+include /etc/sway/config.d/*

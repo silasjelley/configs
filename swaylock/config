@@ -1,0 +1,28 @@
+# Swaylock Configuration
+
+# When an empty password is provided by the user, do not validate it
+ignore-empty-password
+
+# Show the number of failed authentication attempts on the indicator
+show-failed-attempts
+
+# Display the given image
+image=/tmp/screen.png
+
+# Show the current Caps Lock state also on the indicator
+indicator-caps-lock
+
+# Turn the screen (or background if image is used) into the given color
+color=#2e3440
+
+# Sets the color of key press highlight segments
+key-hl-color=#2e3440
+
+# Sets the color of the outside of the indicator when typing or idle
+ring-color=white
+
+# Sets the color of the outside of the indicator when verifying
+ring-ver-color=white
+
+# 
+inside-ver-color=pink

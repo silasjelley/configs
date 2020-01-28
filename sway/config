@@ -22,11 +22,12 @@
     set $term alacritty
     # Tiled
     bindsym $mod+Return exec $term
-    # Floating 
-    bindsym $mod+Shift+Return exec $term -t $term-floating
-    for_window [title="$term-floating"] floating enable 
-    # Floating Editor
-    for_window [title="floating-editor"] floating enable, resize set width 30 ppt height 75 ppt
+    # Floating Small 
+    for_window [app_id="Alacritty" title="Small"] floating enable 
+    bindsym $mod+Shift+Return exec $term -t Small
+    # Floating Large
+    for_window [app_id="Alacritty" title="Large"] floating enable, resize set width 30 ppt height 75 ppt
+    bindsym $mod+Grave exec $term -t "Large"
 
 ### Launchers
     # Main Launcher
@@ -48,7 +49,6 @@
     # Firefox Picture-in-Picture Window
     for_window [app_id="firefox" title="^Picture-in-Picture$"] floating enable, move position 2900 1565, sticky enable
 
-
 ### Image Viewer
     for_window [app_id="imv"] floating enable, border pixel
 
@@ -56,13 +56,16 @@
     set $lock lock && swaylock
     bindsym Control+$mod+l exec $lock
 
-# Screenshot
+### Screenshot
     # Screenshot Directory
     set $screendir $HOME/Creations/Screens
     # Whole screen
     bindsym Print exec IMG=$screendir/$(date +%Y-%m-%d_%H-%M-%S).png && grim $IMG && wl-copy < $IMG
     # Selection
-    bindsym $mod+Print exec IMG=$screendir/$(date +%Y-%m-%d_%H-%M-%S).png && grim -g "$(slurp)" $IMG && wl-copy < $IMG
+    bindsym $mod+Print exec IMG=$screendir/$(date +%Y-%m-%d_%H-%M-%S).png && grim -g "$(slurp)" $IMG && wl-copy < $IMGi
+
+### Color Picker
+    bindsym $mod+Shift+f --release exec farge
 
 ### Output Configuration 
 

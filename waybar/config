@@ -1,0 +1,113 @@
+
+{
+    "layer": "top", // Locate waybar above or below windows
+    "position": "top", // Location of waybar on screen
+    "height": 36, // Height of waybar
+    "width": 50, // Waybar width
+    "margin-left": 30,
+    "margin-right": 30,
+    // Choose the order of the modules
+    "modules-left": ["sway/workspaces", "sway/mode", "sway/window"],
+    "modules-center": ["clock"],
+    "modules-right": ["idle_inhibitor", "tray", "pulseaudio", "network", "cpu",
+    "memory", "temperature", "disk", "battery"],
+    "sway/workspaces": {
+        "persistent_workspaces": {
+            "1": [],
+            "2": [],
+	    "3": []  },
+
+        "disable-scroll": true,
+        "all-outputs": false,
+        "format": "{icon}",
+        "format-icons": {
+            "1": " Terminal ",
+            "2": " Browser ",
+            "3": " Code ",
+            "4": " Writing ",
+            "5": " Media ",
+            "urgent": "",
+            "focused": "",
+            "default": ""
+        }
+    },
+    // Symbol Inventory:                               
+
+    "sway/mode": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+    "tray": {
+        "icon-size": 21,
+        "spacing": 10
+    },
+    "clock": {
+	"format": "{:%A %d %B %Y %H:%M:%S}",
+	"interval": 1,
+        "format-alt": "{:%Y-%m-%d}"
+    },
+    "cpu": {
+        "format": "{usage}% ",
+	"on-click": "alacritty -t popup -e gotop"
+    },
+    "memory": {
+        "format": "{}% ",
+	"on-click": "alacritty -t popup -e gotop"
+    },
+    "temperature": {
+        // "thermal-zone": 2,
+        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 80,
+        "format-critical": "{temperatureC}°C {icon}",
+        "format": "{temperatureC}°C {icon}",
+        "format-icons": ["", "", ""]
+    },
+    "disk": {
+    "interval": 30,
+    "format": "{free} of {total}",
+    "path": "/home",
+    "on-click": "alacritty -t popup -e ranger"
+    },
+    "battery": {
+        "bat": "BAT0",
+        "states": {
+            // "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        // "format-good": "", // An empty format will hide the module
+        // "format-full": "",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "network": {
+        // "interface": "wlp2s0", // (Optional) To force the use of this interface
+        "format-wifi": "{signalStrength}% ", // Add {essid} to display WiFi SSID
+        "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
+        "format-disconnected": "Disconnected ⚠",
+	"interval": 1,
+	"on-click": "alacritty -t popup -e wavemon"
+    },
+    "pulseaudio": {
+        //"scroll-step": 1,
+        "format": "{volume}% {icon}",
+        "format-bluetooth": "{volume}% {icon}",
+        "format-muted": "",
+        "format-icons": {
+            "headphones": "",
+            "handsfree": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", ""]
+        },
+        "on-click": "swaymsg exec 'alacritty -t popup -e alsamixer'"
+    }
+}

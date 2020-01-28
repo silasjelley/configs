@@ -1,4 +1,4 @@
-
+# Sway Configuration
 
 ### Variables
     # Modifier Key
@@ -40,8 +40,8 @@
     bindsym $mod+Shift+d exec $term -t launcher -e bash -c 'compgen -c | fzf -e --history $HOME/.fzf_history | xargs -r swaymsg -t command exec'
 
 ### Calculator
-    for_window [title="qalculator"] floating enable, layout tabbed, sticky enable, resize set width 8 ppt height 16 ppt
-    bindsym $mod+c exec $term -t qalculator -e qalc    
+    for_window [app_id="Alacritty" title="Calculator"] floating enable, layout tabbed, sticky enable, resize set width 500 px height 700 px
+    bindsym $mod+c exec $term -t Calculator -e qalc    
 
 ### Browser
     set $browser firefox-wayland
@@ -65,41 +65,48 @@
     bindsym $mod+Print exec IMG=$screendir/$(date +%Y-%m-%d_%H-%M-%S).png && grim -g "$(slurp)" $IMG && wl-copy < $IMGi
 
 ### Color Picker
-    bindsym $mod+Shift+f --release exec farge
+    bindsym $mod+Shift+f exec 'farge --image-viewer mpv'
 
-### Output Configuration 
+### Idle
+    exec swayidle -w \
+	timeout 300 $lock \
+	timeout 600 'swaymsg "output * dpms off"' \
+		resume 'swaymsg "output * dpms on"' \
+	before-sleep $lock 
 
-    # Wallpaper
+## Output Configuration 
+
+    ### Wallpaper
     output * bg #2e3440 solid_color
 
-    # Display Scaling
+    ### Display Scaling
     output * scale 1
 
-    # Define Common Colors
+    ### Define Common Colors
     set $accent #396FE2
     set $white #ECEFF1
     set $black #212121
     set $grey #313131
     
-    # Set Colors	      border    backgr.   text     indicator child_border
+    ### Set Colors	      border    backgr.   text     indicator child_border
     client.focused            $accent   $accent   $black   $black    $white
     client.focused_inactive   $grey     $grey     $accent  $black    $grey
     client.unfocused          $grey     $grey     $white   $black    $grey
     client.background         $black
 
-    # Tweaks
+    ### Tweaks
     focus_follows_mouse no
     gaps inner 30px
     smart_gaps on
     default_border pixel #normal, pixel, none
 
-    # Popup [Waybar 'on-click' items: gotop, wavemon, alsamixer] Positioning
-    for_window [title="popup"] floating enable, resize set width 25 ppt height 25 ppt, move position 2850 30
+    ### Popup [Waybar 'on-click' items: gotop, wavemon, alsamixer] Positioning
+    for_window [app_id="Alacritty" title="popup"] floating enable, resize set width 25 ppt height 25 ppt, move position 2850 30
     
-    # Persist mpv on all Workspaces
+    ### Persist mpv on all Workspaces
     for_window [app_id="mpv"] sticky enable, floating enable, move position 2800 1650
 
-    # Status Bar
+    ### Status Bar
     bar {
         swaybar_command waybar
         # When the status_command prints a new line to stdout, swaybar updates.
@@ -108,9 +115,9 @@
     }
 }
 
-### Key bindings
+## Key bindings
 
-# Basics:
+### Basics:
 
     # Home Row Keys
     set $left h
@@ -131,7 +138,7 @@
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
     for_window [title="^warning$"] floating enable, border pixel
 
-# Media Keys
+### Media Keys
    
     
     #bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
@@ -146,7 +153,7 @@
     bindsym XF86AudioLowerVolume exec amixer -q set Master 5%- unmute && amixer sget Master | grep 'Right:' | awk -F'[][]' '{ print substr($2, 0, length($2)-1) }' > $SWAYSOCK.wob
     #bindsym XF86AudioMute exec (amixer get Master | grep off > /dev/null && amixer -q set Master unmute && amixer sget Master | grep 'Right:' | awk -F'[][]' '{ print substr($2, 0, length($2)-1) }' > $SWAYSOCK.wob) || (amixer -q set Master mute && echo 0 > $SWAYSOCK.wob)
 
-# Moving around:
+### Moving around:
 
     # Move your focus around
     bindsym $mod+$left focus left
@@ -170,7 +177,7 @@
     bindsym $mod+Shift+Up move up
     bindsym $mod+Shift+Right move right
 
-# Workspaces:
+### Workspaces:
 
     # Set Workspace Names
     set $ws1    "1"
@@ -211,7 +218,7 @@
     bindsym $mod+Tab workspace back_and_forth
     workspace_auto_back_and_forth yes
 
-# Layout Control:
+### Layout Control:
 
     # You can "split" the current object of your focus with
     # $mod+b or $mod+v, for horizontal and vertical splits
@@ -235,9 +242,9 @@
 
     # Move focus to the parent container
     bindsym $mod+a focus parent
-#
-# Scratchpad:
-#
+
+### Scratchpad:
+
     # Sway has a "scratchpad", which is a bag of holding for windows.
     # You can send windows there and get them back later.
 
@@ -247,30 +254,30 @@
     # Show the next scratchpad window or hide the focused scratchpad window.
     # If there are multiple scratchpad windows, this command cycles through them.
     bindsym $mod+minus scratchpad show
-#
-# Resizing containers:
-#
-mode "resize" {
-    # left will shrink the containers width
-    # right will grow the containers width
-    # up will shrink the containers height
-    # down will grow the containers height
-    bindsym $left resize shrink width 10px
-    bindsym $down resize grow height 10px
-    bindsym $up resize shrink height 10px
-    bindsym $right resize grow width 10px
 
-    # ditto, with arrow keys
-    bindsym Left resize shrink width 10px
-    bindsym Down resize grow height 10px
-    bindsym Up resize shrink height 10px
-    bindsym Right resize grow width 10px
+### Resizing containers:
 
-    # return to default mode
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
+    mode "resize" {
+	# left will shrink the containers width
+	# right will grow the containers width
+	# up will shrink the containers height
+	# down will grow the containers height
+	bindsym $left resize shrink width 10px
+	bindsym $down resize grow height 10px
+	bindsym $up resize shrink height 10px
+	bindsym $right resize grow width 10px
+
+	# ditto, with arrow keys
+	bindsym Left resize shrink width 10px
+	bindsym Down resize grow height 10px
+	bindsym Up resize shrink height 10px
+	bindsym Right resize grow width 10px
+
+	# return to default mode
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
 }
-    bindsym $mod+r mode "resize"
+	bindsym $mod+r mode "resize"
 
 
 include /etc/sway/config.d/*

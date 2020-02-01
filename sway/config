@@ -22,12 +22,12 @@
     set $term alacritty
     # Tiled
     bindsym $mod+Return exec $term
-    # Floating Small 
-    for_window [app_id="Alacritty" title="Small"] floating enable 
-    bindsym $mod+Shift+Return exec $term -t Small
-    # Floating Large
-    for_window [app_id="Alacritty" title="Large"] floating enable, resize set width 30 ppt height 75 ppt
-    bindsym $mod+Grave exec $term -t "Large"
+    # Floating
+    for_window [app_id="Alacritty" title="Float"] floating enable, resize set width 25 ppt height 55 ppt
+    bindsym $mod+Shift+Return exec $term -t "Float" 
+    # Scrathpad 
+    for_window [app_id="Alacritty" title="Scratch"] floating enable, resize set width 30 ppt height 60 ppt
+    bindsym $mod+Grave exec $term -t "Scratch"
 
 ### Launchers
     # Main Launcher
@@ -69,10 +69,13 @@
 
 ### Idle
     exec swayidle -w \
-	timeout 300 $lock \
+	timeout 300 swaymsg exec $lock \
 	timeout 600 'swaymsg "output * dpms off"' \
 		resume 'swaymsg "output * dpms on"' \
-	before-sleep $lock 
+	before-sleep swaymsg exec $lock
+
+### Gopass Bridge
+    for_window [title="Gopass Bridge"] floating enable
 
 ## Output Configuration 
 

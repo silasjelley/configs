@@ -1,5 +1,6 @@
 # Startup
-
+  export EDITOR=nvim
+  export VISUAL="$EDITOR"
 # Aliases
   ## Packages
   alias v="vim"
@@ -10,6 +11,7 @@
   alias ezsh="editor ~/.zshrc"
   alias rzsh="source ~/.zshrc"
   alias evim="editor ~/.vimrc"
+  alias envim="editor ~/.config/nvim/init.vim"
   alias ebash="editor ~/.bashrc"
   alias rbash="source ~/.bashrc"
   alias esway="editor ~/.config/sway/config"
@@ -32,9 +34,12 @@
   alias tl="task log"
   alias td="task done"
   alias tm="task modify"
+  alias grind="task add project:Grind"
+  alias shanty="task add project:Shanty"
   alias urgent="task add +Reminder due:today"
   alias remind="task add +Reminder" 
-  alias tasystems="task add project:Systems +Hack +Wolfe"
+  alias twolfe="task add project:Config +Wolfe"
+  alias tpanda="task add project:Config +Panda"
   ## Misc
   alias music="pgrep spotifyd | xargs kill && spotifyd && spt"
 

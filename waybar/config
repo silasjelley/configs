@@ -1,13 +1,13 @@
 
 {
-    "layer": "top", // Locate waybar above or below windows
+    "layer": "bottom", // Locate waybar above or below windows
     "position": "top", // Location of waybar on screen
     "height": 36, // Height of waybar
     "width": 50, // Waybar width
     "margin-left": 30,
     "margin-right": 30,
     // Choose the order of the modules
-    "modules-left": ["sway/workspaces", "sway/mode", "sway/window"],
+    "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["clock"],
     "modules-right": ["idle_inhibitor", "tray", "pulseaudio", "network", "cpu",
     "memory", "temperature", "disk", "battery"],
@@ -15,17 +15,19 @@
         "persistent_workspaces": {
             "1": [],
             "2": [],
-	    "3": []  },
+	    "3": [],
+	    "4": [],
+	    "5": []  },
 
         "disable-scroll": true,
         "all-outputs": false,
         "format": "{icon}",
         "format-icons": {
-            "1": " Terminal ",
-            "2": " Browser ",
-            "3": " Code ",
-            "4": " Writing ",
-            "5": " Media ",
+            "1": " ",
+            "2": " ",
+            "3": " ",
+            "4": " ",
+            "5": " ",
             "urgent": "",
             "focused": "",
             "default": ""
@@ -50,7 +52,8 @@
     "clock": {
 	"format": "{:%A %d %B %Y %H:%M:%S}",
 	"interval": 1,
-        "format-alt": "{:%Y-%m-%d}"
+        "format-alt": "{:%H:%M:%S}",
+	"on-click-right": "wl-copy $(date '+%Y-%m-%d %T')"
     },
     "cpu": {
         "format": "{usage}% ",
@@ -61,12 +64,9 @@
 	"on-click": "alacritty -t popup -e gotop"
     },
     "temperature": {
-        // "thermal-zone": 2,
-        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
-        "critical-threshold": 80,
-        "format-critical": "{temperatureC}°C {icon}",
-        "format": "{temperatureC}°C {icon}",
-        "format-icons": ["", "", ""]
+    	"critical-threshold": 70,
+	"format-critical": " {temperatureC}°C",
+	"format": " {temperatureC}°C"
     },
     "disk": {
     "interval": 30,
@@ -91,8 +91,11 @@
         "format-wifi": "{signalStrength}% ", // Add {essid} to display WiFi SSID
         "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
         "format-disconnected": "Disconnected ⚠",
-	"interval": 1,
-	"on-click": "alacritty -t popup -e wavemon"
+	"on-click": "if [ $(nmcli radio wifi) = enabled ]; then nmcli radio wifi off; else nmcli radio wifi on; fi",
+	"on-click-right": "alacritty -t popup -e wavemon",
+	"tooltip-format": "{ifname}\n{ipaddr}/{cidr}\n",
+        "tooltip-format-wifi": "{essid} {frequency}MHz\nStrength: {signaldBm}dBm ({signalStrength}%)\nIP: {ipaddr}/{cidr}\n⬆: {bandwidthUpBits} ⬇: {bandwidthDownBits}",
+	"interval": 1
     },
     "pulseaudio": {
         //"scroll-step": 1,
@@ -108,6 +111,7 @@
             "car": "",
             "default": ["", ""]
         },
-        "on-click": "swaymsg exec 'alacritty -t popup -e alsamixer'"
+	"on-click": "swaymsg exec pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "on-click-right": "swaymsg exec 'alacritty -t popup -e alsamixer'"
     }
 }

@@ -11,6 +11,8 @@ window#waybar {
     color: white;
 }
 
+window#waybar.hidden { opacity: 0.2; }
+
 #window {
     font-weight: bold;
     font-family: "Ubuntu";
@@ -28,26 +30,19 @@ window#waybar {
     border-top: 2px solid transparent;
 }
 
+#workspaces button:hover {
+  background: rgba(0, 0, 0, 0.2);
+  box-shadow: inherit;
+  border-bottom: 3px solid #ffffff;
+}
+
 #workspaces button.focused {
     color: white;
-    /*border-top: 2px solid white;*/
-}
-
-#mode {
-    background: #64727D;
-    border-bottom: 3px solid white;
-}
-
-#mode, #clock, #idle_inhibitor, #tray, #pulseaudio, #network, #cpu, #memory, #temperature, #disk {
-    padding: 0 8px;
-    margin: 0 2px;
+    border-top: 2px solid white;
 }
 
 #clock {
     font-weight: bold;
-}
-
-#battery {
 }
 
 #battery icon {
@@ -73,28 +68,32 @@ window#waybar {
     animation-direction: alternate;
 }
 
-#cpu {
+#clock,
+#disk
+#tray
+#battery,
+#cpu,
+#memory,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#mode,
+#idle_inhibitor {
+  padding: 0 10px;
+  margin: 0 4px;
+  color: #ffffff;
 }
 
-#memory {
-}
-
-#network {
-}
-
-#network.disconnected {
-    background: #f53c3c;
-}
-
-#pulseaudio {
-}
-
-#pulseaudio.muted {
-}
-
-#custom-spotify {
-    color: rgb(102, 220, 105);
-}
-
-#tray {
-}
+#battery {}
+#cpu {}
+#memory {}
+#network {}
+#idle_inhibitor.activated { color: #ebcb8b; }
+#network.disconnected { color: #bf616a; }
+#pulseaudio {}
+#pulseaudio.muted {}
+#tray {}
+#pulseaudio.muted { color: #bf616a; }
+#temperature { color: #88c0d0; }
+#temperature.critical { color: #bf616a; }

@@ -25,8 +25,8 @@
     # Floating
     for_window [app_id="Alacritty" title="Float"] floating enable, resize set width 25 ppt height 55 ppt
     bindsym $mod+Shift+Return exec $term -t "Float" 
-    # Scrathpad 
-    for_window [app_id="Alacritty" title="Scratch"] floating enable, resize set width 30 ppt height 60 ppt
+    # Scratchpad 
+    for_window [app_id="Alacritty" title="Scratch"] floating enable, resize set width 30 ppt height 60 ppt, opacity 0.6
     bindsym $mod+Grave exec $term -t "Scratch"
 
 ### Launchers
@@ -34,7 +34,7 @@
     #set $menu dmenu_path | wofi --show drun -i | xargs swaymsg exec --¬
     set $menu $term -t launcher -e zsh -c 'fd . -e desktop /usr/share/app* | xargs basename -s .desktop -a | \
     fzf -e --history $HOME/.fzf_history | xargs -r swaymsg -t command exec'
-    for_window [app_id="Alacritty" title="launcher"] floating enable, layout tabbed, sticky enable, resize set height 220 px
+    for_window [app_id="Alacritty" title="launcher"] floating enable, layout tabbed, sticky enable, resize set height 220 px, opacity 0.7
     bindsym $mod+d exec $menu 
     # Fuzzy Launcher 
     bindsym $mod+Shift+d exec $term -t launcher -e bash -c 'compgen -c | fzf -e --history $HOME/.fzf_history | xargs -r swaymsg -t command exec'
@@ -53,7 +53,7 @@
     for_window [app_id="imv"] floating enable, border pixel
 
 ### Lockscreen
-    set $lock lock && swaylock
+    set $lock system-lock && swaylock
     bindsym Control+$mod+l exec $lock
 
 ### Screenshot
@@ -69,10 +69,10 @@
 
 ### Idle
     exec swayidle -w \
-	timeout 300 swaymsg exec $lock \
+	timeout 300 'swaymsg exec system-lock && swaylock' \
 	timeout 600 'swaymsg "output * dpms off"' \
 		resume 'swaymsg "output * dpms on"' \
-	before-sleep swaymsg exec $lock
+	before-sleep 'swaymsg exec system-lock && swaylock' 
 
 ### Gopass Bridge
     for_window [title="Gopass Bridge"] floating enable
@@ -100,7 +100,6 @@
     ### Tweaks
     focus_follows_mouse no
     gaps inner 30px
-    smart_gaps on
     default_border pixel #normal, pixel, none
 
     ### Popup [Waybar 'on-click' items: gotop, wavemon, alsamixer] Positioning
@@ -219,7 +218,10 @@
 
     # Switch back to most recent workspace
     bindsym $mod+Tab workspace back_and_forth
-    workspace_auto_back_and_forth yes
+    #workspace_auto_back_and_forth yes
+    
+    # Hides the cursor after no activity.
+    seat seat0 hide_cursor 5000
 
 ### Layout Control:
 
@@ -281,6 +283,9 @@
 	bindsym Escape mode "default"
 }
 	bindsym $mod+r mode "resize"
+
+# Enable Xwayland support, which allows X11 applications to be used.
+xwayland enable
 
 
 include /etc/sway/config.d/*

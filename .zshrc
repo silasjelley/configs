@@ -12,11 +12,14 @@
   alias rzsh="source ~/.zshrc"
   alias evim="editor ~/.vimrc"
   alias envim="editor ~/.config/nvim/init.vim"
+  alias enbind="editor ~/.config/nvim/bindings.vim"
+  alias evplug="editor ~/.config/nvim/plugins.vim"
   alias ebash="editor ~/.bashrc"
   alias rbash="source ~/.bashrc"
   alias esway="editor ~/.config/sway/config"
   alias eswaylock="editor ~/.config/swaylock/config"
   alias ealac="editor ~/.config/alacritty/alacritty.yml"
+  alias ekitty="editor ~/.config/kitty/kitty.conf"
   alias ewaybar="editor ~/.config/waybar/config"
   alias ewaycss="editor ~/.config/waybar/style.css"
   alias emako="editor ~/.config/mako/config"
@@ -43,6 +46,19 @@
   ## Misc
   alias music="pgrep spotifyd | xargs kill && spotifyd && spt"
 
+# Options
+# setopt always_to_end          # Move the cursor to the end of the word after each completion.
+setopt auto_cd                # If command is a path, cd into it.
+setopt cdable_vars            # Add '~' to every cd commands which the argument is not a directory and does not begin with a slash.
+setopt combining_chars        # Display combining characters correctly.
+setopt extended_history       # Save each command's beginning timestamp and the duration to the history file.
+setopt glob_dots              # Include dotfiles in globbing.
+setopt hist_find_no_dups      # When searching for history entries in the line editor, do not display duplicates of a line previously found.
+setopt hist_ignore_all_dups   # Avoid duplication when adding a new command.
+setopt interactive_comments   # Allow comments even in interactive shells.
+setopt notify                 # Report the status of background jobs immediately, rather than waiting until just before printing a prompt.
+setopt share_history          # Import new commands from the history file, and append typed commands to the history file.
+
 # The following lines were added by compinstall
 
 zstyle ':completion:*' menu select completer _expand _complete _ignored _correct _approximate
@@ -58,9 +74,7 @@ HISTFILE=~/.zsh_history
 HISTSIZE=50000
 SAVEHIST=10000
 setopt hist_ignore_space
-setopt extended_history
 setopt appendhistory
-setopt share_history
 
 
 # Vim Style
@@ -87,3 +101,5 @@ antigen theme denysdovhan/spaceship-prompt
 
 antigen apply
 
+
+[ -f ~/.resh/shellrc ] && source ~/.resh/shellrc

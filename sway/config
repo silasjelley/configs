@@ -48,6 +48,7 @@
     bindsym $mod+Shift+b exec $browser
     # Firefox Picture-in-Picture Window
     for_window [app_id="firefox" title="^Picture-in-Picture$"] floating enable, move position 2900 1565, sticky enable
+    for_window [title="Enter name of file to save to"] floating enable, resize set width 25 ppt height 55 ppt
 
 ### Image Viewer
     for_window [app_id="imv"] floating enable, border pixel
@@ -69,10 +70,10 @@
 
 ### Idle
     exec swayidle -w \
-	timeout 300 'swaymsg exec system-lock && swaylock' \
-	timeout 600 'swaymsg "output * dpms off"' \
-		resume 'swaymsg "output * dpms on"' \
-	before-sleep 'swaymsg exec system-lock && swaylock' 
+	timeout 300 'swaymsg exec system-lock && swaylock' #\
+	#timeout 600 'swaymsg "output * dpms off"' \
+	#	resume 'swaymsg "output * dpms on"' \
+	#before-sleep 'swaymsg exec system-lock && swaylock' 
 
 ### Gopass Bridge
     for_window [title="Gopass Bridge"] floating enable

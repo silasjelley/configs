@@ -22,7 +22,11 @@ key-hl-color=#2e3440
 ring-color=white
 
 # Sets the color of the outside of the indicator when verifying
-ring-ver-color=white
+ring-ver-color=#2e3440
 
-# 
-inside-ver-color=pink
+# Sets the color of the inside of the indicator when verifying
+inside-ver-color=#2e3440
+
+# Detach from the controlling terminal after locking
+daemonize
+

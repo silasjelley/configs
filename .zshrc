@@ -13,28 +13,35 @@
   alias editor="nvim"
   alias e="editor"  
   ## Edit Configs
-  alias ezsh="editor ~/.zshrc"
-  alias rzsh="source ~/.zshrc"
-  alias evim="editor ~/.vimrc"
-  alias envim="editor ~/.config/nvim/init.vim"
-  alias evbind="editor ~/.config/nvim/bindings.vim"
-  alias evplug="editor ~/.config/nvim/plugins.vim"
-  alias evabbr="editor ~/.config/nvim/abbreviations.vim"
-  alias evcoc="editor ~/.config/nvim/coc.vim"
-  alias ebash="editor ~/.bashrc"
-  alias rbash="source ~/.bashrc"
-  alias esway="editor ~/.config/sway/config"
-  alias eswaylock="editor ~/.config/swaylock/config"
-  alias ealac="editor ~/.config/alacritty/alacritty.yml"
-  alias ekitty="editor ~/.config/kitty/kitty.conf"
-  alias ekcols="editor ~/.config/kitty/colors.conf"
-  alias ewaybar="editor ~/.config/waybar/config"
-  alias ewaycss="editor ~/.config/waybar/style.css"
-  alias emako="editor ~/.config/mako/config"
-  alias eranger="editor ~/.config/ranger/rc.conf"
-  alias erangercom="editor ~/.config/ranger/commands.py"
-  alias erifle="editor ~/.config/ranger/rifle.conf"
-  alias eimv="editor ~/.config/imv/config"
+  alias ezsh="editor $HOME/.zshrc"
+  alias rzsh="exec zsh"
+  alias evim="editor $HOME/.vimrc"
+  alias envim="editor $HOME/.config/nvim/init.vim"
+  alias evbind="editor $HOME/.config/nvim/bindings.vim"
+  alias evplug="editor $HOME/.config/nvim/plugins.vim"
+  alias evabbr="editor $HOME/.config/nvim/abbreviations.vim"
+  alias evcoc="editor $HOME/.config/nvim/coc.vim"
+  alias ebash="editor $HOME/.bashrc"
+  alias rbash="source $HOME/.bashrc"
+  alias esway="editor $HOME/.config/sway/config"
+  alias eswaylock="editor $HOME/.config/swaylock/config"
+  alias ealac="editor $HOME/.config/alacritty/alacritty.yml"
+  alias ekitty="editor $HOME/.config/kitty/kitty.conf"
+  alias ekcols="editor $HOME/.config/kitty/colors.conf"
+  alias ewaybar="editor $HOME/.config/waybar/config"
+  alias ewaycss="editor $HOME/.config/waybar/style.css"
+  alias emako="editor $HOME/.config/mako/config"
+  alias eranger="editor $HOME/.config/ranger/rc.conf"
+  alias erangercom="editor $HOME/.config/ranger/commands.py"
+  alias erifle="editor $HOME/.config/ranger/rifle.conf"
+  alias eimv="editor $HOME/.config/imv/config"
+  alias enb="editor $HOME/.config/newsboat/config"
+  alias enburl="editor $HOME/.newsboat/urls"
+  alias epackages-base="editor $HOME/Projects/Gather/schemes/fedora/packages-base"
+  alias epackages-devel="editor $HOME/Projects/Gather/schemes/fedora/packages-devel"
+  alias epackages-remove="editor $HOME/Projects/Gather/schemes/fedora/packages-remove"
+  alias epackages-sundry="editor $HOME/Projects/Gather/schemes/fedora/packages-sundry"
+  alias epackages-utils="editor $HOME/Projects/Gather/schemes/fedora/packages-utils"
   ## Package Management
   alias dnfi="sudo dnf install"
   alias dnfr="sudo dnf remove"
@@ -45,19 +52,34 @@
   alias tl="task log"
   alias td="task done"
   alias tm="task modify"
+  alias todo="task due or scheduled:today"
   alias grind="task add project:Grind"
   alias shanty="task add project:Shanty"
-  alias urgent="task add +Reminder due:today"
-  alias remind="task add +Reminder" 
+  alias urgent="task add project:Reminder due:today"
+  alias remind="task add project:Reminder" 
   alias twolfe="task add project:Config +Wolfe"
   alias tpanda="task add project:Config +Panda"
+  ## Buku
+  alias bm="buku"
+  alias bma="buku -a"
+  alias bms="buku -s"
+  ## Gopass
+  alias gop="gopass"
+  alias gopc="gopass -c"
+  alias gopi="gopass insert"
+  alias gope="gopass edit --create"
+  alias gopt="exa -TL1 $HOME/.password-store"
+  alias gopmv="gopass mv"
+  alias goprm="gopass rm"
+  ## Newsboat
+  alias nb="newsboat"
   ## Misc
   alias music="pgrep spotifyd | xargs kill && spotifyd && spt"
 
 # Options
   setopt always_to_end          # Move the cursor to the end of the word after each completion.
   setopt auto_cd                # If command is a path, cd into it.
-  setopt cdable_vars            # Add '~' to every cd commands which the argument is not a directory and does not begin with a slash.
+  setopt cdable_vars            # Add '$HOME' to every cd commands which the argument is not a directory and does not begin with a slash.
   setopt combining_chars        # Display combining characters correctly.
   setopt extended_history       # Save each command's beginning timestamp and the duration to the history file.
   setopt glob_dots              # Include dotfiles in globbing.
@@ -78,7 +100,7 @@ compinit
 
 # History
 
-HISTFILE=~/.zsh_history
+HISTFILE=$HOME/.zsh_history
 HISTSIZE=50000
 SAVEHIST=10000
 setopt hist_ignore_space
@@ -110,4 +132,4 @@ antigen apply
 # Enable Startship Prompt (Installed Seperately
 #eval "$(starship init zsh)"
 
-[ -f ~/.resh/shellrc ] && source ~/.resh/shellrc
+[ -f $HOME/.resh/shellrc ] && source $HOME/.resh/shellrc

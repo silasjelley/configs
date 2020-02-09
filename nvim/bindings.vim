@@ -1,3 +1,6 @@
+" Set leader character
+let mapleader = "'"
+
 " Disable arrow key navigation
 noremap <Up> <Nop>
 noremap <Down> <Nop>
@@ -19,6 +22,7 @@ nnoremap  <leader>] :NERDTreeToggle<CR>
 
 " Goyo + Limelight + Spell check + Hide tilde
 nnoremap <Leader>gy :Goyo<CR>
-autocmd! User GoyoEnter Limelight | set spell | hi! EndOfBuffer ctermbg=bg ctermfg=bg guibg=bg guifg=bg
-autocmd! User GoyoLeave Limelight!| set nospell
+autocmd! User GoyoEnter Limelight | set spell | hi! EndOfBuffer ctermbg=bg ctermfg=bg guibg=bg guifg=bg | 
+autocmd! User GoyoLeave Limelight!| set nospell | quit
+
 

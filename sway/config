@@ -32,12 +32,16 @@
 ### Launchers
     # Main Launcher
     #set $menu dmenu_path | wofi --show drun -i | xargs swaymsg exec --¬
-    set $menu $term -t launcher -e zsh -c 'fd . -e desktop /usr/share/app* | xargs basename -s .desktop -a | \
-    fzf -e --history $HOME/.fzf_history | xargs -r swaymsg -t command exec'
+    set $menu $term -t launcher -e zsh -c 'fd . -e desktop /usr/share/app* | xargs basename -s .desktop -a | fzf -e --history $HOME/.fzf_history | xargs -r swaymsg -t command exec'
     for_window [app_id="Alacritty" title="launcher"] floating enable, layout tabbed, sticky enable, resize set height 220 px, opacity 0.7
     bindsym $mod+d exec $menu 
     # Fuzzy Launcher 
     bindsym $mod+Shift+d exec $term -t launcher -e bash -c 'compgen -c | fzf -e --history $HOME/.fzf_history | xargs -r swaymsg -t command exec'
+
+### Password Manager
+	for_window [app_id="kitty" title="Password Manager"] floating enable, sticky enable, resize set height 220 px
+	set $pass kitty --title "Password Manager" ripasso-cursive
+	bindsym $mod+m exec $pass
 
 ### Calculator
     for_window [app_id="Alacritty" title="Calculator"] floating enable, layout tabbed, sticky enable, resize set width 500 px height 700 px
@@ -52,6 +56,9 @@
 
 ### Image Viewer
     for_window [app_id="imv"] floating enable, border pixel
+
+### Document Viewer
+	for_window [class="MuPDF"] floating enable, border pixel
 
 ### Lockscreen
     set $lock system-lock && swaylock
@@ -164,10 +171,10 @@
     bindsym $mod+$up focus up
     bindsym $mod+$right focus right
     # or use $mod+[up|down|left|right]
-    bindsym $mod+Left focus left
-    bindsym $mod+Down focus down
-    bindsym $mod+Up focus up
-    bindsym $mod+Right focus right
+    #bindsym $mod+Left focus left
+    #bindsym $mod+Down focus down
+    #bindsym $mod+Up focus up
+    #bindsym $mod+Right focus right
 
     # _move_ the focused window with the same, but add Shift
     bindsym $mod+Shift+$left move left
@@ -175,10 +182,10 @@
     bindsym $mod+Shift+$up move up
     bindsym $mod+Shift+$right move right
     # ditto, with arrow keys
-    bindsym $mod+Shift+Left move left
-    bindsym $mod+Shift+Down move down
-    bindsym $mod+Shift+Up move up
-    bindsym $mod+Shift+Right move right
+    #bindsym $mod+Shift+Left move left
+    #bindsym $mod+Shift+Down move down
+    #bindsym $mod+Shift+Up move up
+    #bindsym $mod+Shift+Right move right
 
 ### Workspaces:
 

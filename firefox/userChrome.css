@@ -1,0 +1,163 @@
+@namespace html url("http://www.w3.org/1999/xhtml");
+
+/*
+ * ADD-ONS
+ * - Treestyletab
+*/
+
+/* Remove the Tab Bar on top */
+#TabsToolbar { visibility: collapse !important; }
+
+/* Set colors */
+
+window#main-window {
+    --toolbar-bgcolor: #121212 !important;
+    --lwt-accent-color: #121212 !important;
+    --lwt-toolbar-field-background-color: #121212 !important;
+    --lwt-toolbar-field-color: #cccccc !important;
+    --chrome-content-separator-color: none !important;
+    --backbutton-background: none !important;
+    --arrowpanel-background: #121212 !important;
+    --arrowpanel-border-color: #121212 !important;
+
+    --lwt-sidebar-background-color: #121212 !important;
+}
+
+textbox {
+    background-color: #121212 !important;
+    border: none !important;
+}
+
+vbox[style], hbox[style] {
+  background-color: #121212 !important;
+  border: none !important;
+}
+.sidebar-placesTree {
+    background-color: #121212 !important;
+    border: none !important;
+}
+:root[lwt-popup-brighttext] {
+    --panel-separator-color: #121212 !important;
+    border: none !important;
+}
+
+/* Make the sidebar not have a header */
+
+#sidebar-header {
+    border: none !important;
+}
+
+/* Removes border from URL/Search Bar */
+#urlbar,
+#searchbar {
+    border: none !important;
+}
+
+/* Removes icon from URLbar */
+#identity-box,
+#tracking-protection-icon-container,
+.urlbar-icon, .tab-icon-image {
+    display: none !important;
+}
+
+.tab-line {
+    height: 0 !important;
+}
+
+.close-icon {
+    display: none !important;
+}
+
+#page-action-buttons>*:not(#star-button-box),
+.urlbar-history-dropmarker {
+    opacity: 0 !important;
+}
+
+/* Removal of black bottom 1px line */
+
+#navigator-toolbox::after {
+    display: none !important;
+}
+
+/* Fonts */
+menubar,
+menubutton,
+menulist,
+menu,
+menuitem,
+textbox,
+toolbar,
+tab,
+tree,
+.tree-rows {
+    font-family: 'Input Sans Narrow', sans-serif !important;
+    font-size: 11pt !important;
+    font-weight: regular;
+    font-style: normal !important;
+    -moz-appearance: none !important;
+    color: #cccccc !important;
+}
+
+/* Removes border on Nav-bar */
+#navigator-toolbox {
+    --tabs-border-color: none !important;;
+
+}
+
+/* HOVER EFFECT FOR TREE-STYLE-TAB SIDEBAR */
+/*-----------------------*/
+
+/* Shrink sidebar until hovered, when using Tree Style Tab. */
+
+
+/*:root doesnt seem to work properly anymore, widths defined manually*/
+:root {
+    --thin-tab-width: 30px;
+    --wide-tab-width: 260px;
+}
+
+#sidebar {
+    max-width: none !important;
+    min-width: 0px !important;
+    border-right: none !important;
+}
+
+/* Hide splitter, when using Tree Style Tab. */
+#sidebar-box + #sidebar-splitter {
+    display: none !important;
+}
+
+/* Hide sidebar header, when using Tree Style Tab. */
+#sidebar-box #sidebar-header {
+    visibility: collapse;
+}
+
+#sidebar-box:not() {
+    /*min-width: var(--wide-tab-width) !important;*/
+    min-width: 40px!important;
+    max-width: none !important;
+}
+
+#sidebar-box {
+    position: relative !important;
+    transition: all 300ms !important;
+    /*min-width: var(--thin-tab-width) !important;/*
+    /*max-width: var(--thin-tab-width) !important;*/
+    min-width: 40px!important;
+    max-width: 40px!important;
+    z-index: 1!important;
+}
+
+#sidebar-box:hover {
+    transition: all 300ms !important;
+    /*min-width: var(--wide-tab-width) !important;*/
+    /*max-width: var(--wide-tab-width) !important;*/
+    min-width: 200px!important;
+    max-width: 200px!important;
+
+/* Negative right-margin to keep page from being pushed to the side. */
+    /*margin-right: calc((var(--wide-tab-width) - var(--thin-tab-width)) * -1) !important;*/
+    margin-right: -160px!important;
+    z-index: 1!important;
+}
+

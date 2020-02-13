@@ -1,6 +1,6 @@
 
 {
-    "layer": "bottom", // Locate waybar above or below windows
+    "layer": "top", // Locate waybar above or below windows
     "position": "top", // Location of waybar on screen
     "height": 36, // Height of waybar
     "width": 50, // Waybar width
@@ -74,18 +74,18 @@
     "path": "/home",
     "on-click": "alacritty -t popup -e ranger"
     },
-    "battery": {
-        "bat": "BAT0",
-        "states": {
-            // "good": 95,
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{capacity}% {icon}",
-        // "format-good": "", // An empty format will hide the module
-        // "format-full": "",
-        "format-icons": ["", "", "", "", ""]
-    },
+    //"battery": {
+    //    "bat": "BAT0",
+    //    "states": {
+    //        // "good": 95,
+    //        "warning": 30,
+    //        "critical": 15
+    //    },
+    //    "format": "{capacity}% {icon}",
+    //    // "format-good": "", // An empty format will hide the module
+    //    // "format-full": "",
+    //    "format-icons": ["", "", "", "", ""]
+    //},
     "network": {
         // "interface": "wlp2s0", // (Optional) To force the use of this interface
         "format-wifi": "{signalStrength}% ", // Add {essid} to display WiFi SSID

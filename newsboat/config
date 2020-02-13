@@ -1,5 +1,22 @@
 # Newsboat Configuration
 
+auto-reload yes
+browser firefox-wayland
+cleanup-on-quit yes
+download-path "$HOME/Downloads"
+feed-sort-order title-dec
+max-downloads 4
+notify-always yes
+notify-format "%n unread articles within %f unread feeds"
+notify-program notify-send
+player mpv
+refresh-on-startup yes
+reload-time 20
+reload-threads 2
+#show-read-articles no
+show-read-feeds no
+
+
 # Keybinds
 bind-key j next
 bind-key k prev

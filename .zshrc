@@ -35,8 +35,8 @@
   alias erangercom="editor $HOME/.config/ranger/commands.py"
   alias erifle="editor $HOME/.config/ranger/rifle.conf"
   alias eimv="editor $HOME/.config/imv/config"
-  alias enb="editor $HOME/.config/newsboat/config"
-  alias enburl="editor $HOME/.newsboat/urls"
+  alias enewsboat="editor $HOME/.config/newsboat/config"
+  alias enewsboaturls="editor $HOME/.config/newsboat/urls"
   alias epackages-base="editor $HOME/Projects/Gather/schemes/fedora/packages-base"
   alias epackages-devel="editor $HOME/Projects/Gather/schemes/fedora/packages-devel"
   alias epackages-remove="editor $HOME/Projects/Gather/schemes/fedora/packages-remove"
@@ -46,23 +46,13 @@
   alias dnfi="sudo dnf install"
   alias dnfr="sudo dnf remove"
   alias dnfu="sudo dnf upgrade"
-  ## Task
-  alias t="task"
-  alias ta="task add"
-  alias tl="task log"
-  alias td="task done"
-  alias tm="task modify"
-  alias todo="task due or scheduled:today"
-  alias grind="task add project:Grind"
-  alias shanty="task add project:Shanty"
-  alias urgent="task add project:Reminder due:today"
-  alias remind="task add project:Reminder" 
-  alias twolfe="task add project:Config +Wolfe"
-  alias tpanda="task add project:Config +Panda"
   ## Buku
   alias bm="buku"
   alias bma="buku -a"
   alias bms="buku -s"
+  ## Git
+  alias gcsv="git commit -S -v"
+  alias gacsv="git add $1 && git commit -S -v $1"
   ## Gopass
   alias gop="gopass"
   alias gopc="gopass -c"
@@ -73,8 +63,25 @@
   alias goprm="gopass rm"
   ## Newsboat
   alias nb="newsboat"
+  ## Task
+  alias t="task"
+  alias ta="task add"
+  alias tl="task log"
+  alias td="task done"
+  alias tm="task modify"
+  alias todo="task due or scheduled:today"
+  alias work="task add project:Work"
+  alias home="task add project:Home"
+  alias urgent="task add +Reminder +Urgent due:today"
+  alias remind="task add +Reminder" 
+  alias twolfe="task add project:Config +Wolfe"
+  alias tpanda="task add project:Config +Panda"
+  alias tsefna="task add project:Config +Sefna"
+  ## Youtube-DL
+  alias ydl="youtube-dl"
   ## Misc
   alias music="pgrep spotifyd | xargs kill && spotifyd && spt"
+  alias epoch="date +%s"
 
 # Options
   setopt always_to_end          # Move the cursor to the end of the word after each completion.
@@ -91,11 +98,11 @@
 
 # The following lines were added by compinstall
 
-zstyle ':completion:*' menu select completer _expand _complete _ignored _correct _approximate
-zstyle :compinstall filename '/home/silas/.zshrc'
+#zstyle ':completion:*' menu select completer _expand _complete _ignored _correct _approximate
+#zstyle :compinstall filename '$HOME/.zshrc'
 
-autoload -Uz compinit
-compinit
+#autoload -Uz compinit
+#compinit
 # End of lines added by compinstall
 
 # History

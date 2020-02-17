@@ -28,6 +28,9 @@ Plug 'machakann/vim-highlightedyank',{'as':'highlightedyank'}
 
 Plug 'ryanoasis/vim-devicons',{'as':'devicons'}
 
+" Arduino
+Plug 'stevearc/vim-arduino'
+
 "Themes
 " Oceanic
 Plug 'mhartington/oceanic-next',{'as':'oceanic'}

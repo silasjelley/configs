@@ -1,7 +1,7 @@
 " Source Configs
 source ~/.config/nvim/plugins.vim
 source ~/.config/nvim/bindings.vim
-source ~/.config/nvim/abbreviations.vim
+" source ~/.config/nvim/abbreviations.vim
 source ~/.config/nvim/coc.vim
 " source ~/.config/nvim/theme.vim
 
@@ -9,6 +9,7 @@ set nocompatible
 set encoding=utf-8
 scriptencoding utf-8
 set mouse=a
+set updatetime=300
 
 " Tabs
 set tabstop=4

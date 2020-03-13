@@ -14,6 +14,9 @@ nnoremap k gk
 " Find and replace all
 nnoremap <Leader>rr :%s//g<Left><Left>
 
+" Find and replace all of currently selected word
+nnoremap <Leader>RR :%s/\<<C-r><C-w>\>//g<Left><Left>
+
 " Return to normal mode
 inoremap jk <esc>
 

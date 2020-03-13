@@ -1,8 +1,16 @@
+
+# Options
+ignore-timeout=1
+max-visible=-1
+
+# Position
 anchor=center
 
-background-color=#434C5E
+# Styling
+background-color=#2e3440
 text-color=#E5E9F0
 border-color=#E5E9F0
+border-radius=3
 
 [urgency=low]
 background-color=#3B4252

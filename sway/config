@@ -7,10 +7,10 @@
     set $script $HOME/Projects/Scripts
 
 ### Startup
-    # Startup Layout
-    exec $script/layout-development
-    # Start dunst Notification Daemon
-    # exec dunst
+    ### Status Bar
+    bar { 
+	swaybar_command waybar 
+	}
     # Start mako Notification Daemon
     exec mako
     # Start Spotify Daemon
@@ -23,20 +23,30 @@
     # Tiled
     bindsym $mod+Return exec $term
     # Floating
-    for_window [app_id="Alacritty" title="Float"] floating enable, resize set width 25 ppt height 55 ppt
+    for_window [app_id="$term" title="Float"] floating enable, \
+	resize set width 25 ppt height 55 ppt
     bindsym $mod+Shift+Return exec $term -t "Float" 
     # Scratchpad 
-    for_window [app_id="Alacritty" title="Scratch"] floating enable, resize set width 30 ppt height 60 ppt, opacity 0.6
-    bindsym $mod+Grave exec $term -t "Scratch"
+	exec $term --title Scratch 
+    for_window [app_id="$term" title="Scratch"] floating enable, sticky enable, move to scratchpad, \
+	resize set width 40 ppt height 60 ppt
+    bindsym $mod+Grave scratchpad show
+	bindsym $mod+Shift+Grave move scratchpad
 
 ### Launchers
-    # Main Launcher
-    #set $menu dmenu_path | wofi --show drun -i | xargs swaymsg exec --¬
-    set $menu $term -t launcher -e zsh -c 'fd . -e desktop /usr/share/app* | xargs basename -s .desktop -a | fzf -e --history $HOME/.fzf_history | xargs -r swaymsg -t command exec'
-    for_window [app_id="Alacritty" title="launcher"] floating enable, layout tabbed, sticky enable, resize set height 220 px, opacity 0.7
+	# Launcher Style
+    for_window [app_id="$term" title="launcher"] floating enable, \
+	layout tabbed, sticky enable, resize set height 220 px
+	# Layout Chooser
+	exec alacritty -t launcher -e bash -c 'compgen -c | fzf -e --no-sort --history $HOME/.fzf_history -q layout- --margin 1 | xargs -r swaymsg -t command exec'
+    # Application Launcher
+    #set $menu dmenu_path | wofi --show drun -i | xargs swaymsg exec --¬ ## Wofi version
+    set $menu $term -t launcher -e zsh -c 'fd . -e desktop /usr/share/app* | \
+	xargs basename -s .desktop -a | fzf -e --history $HOME/.fzf_history |    \
+	xargs -r swaymsg -t command exec'
     bindsym $mod+d exec $menu 
     # Fuzzy Launcher 
-    bindsym $mod+Shift+d exec $term -t launcher -e bash -c 'compgen -c | fzf -e --history $HOME/.fzf_history | xargs -r swaymsg -t command exec'
+    bindsym $mod+Shift+d exec $term -t launcher -e bash -c 'compgen -c | fzf -e --no-sort --history $HOME/.fzf_history --margin 1,2 | xargs -r swaymsg -t command exec'
 
 ### Password Manager
 	for_window [app_id="kitty" title="Password Manager"] floating enable, sticky enable, resize set height 220 px
@@ -44,7 +54,7 @@
 	bindsym $mod+m exec $pass
 
 ### Calculator
-    for_window [app_id="Alacritty" title="Calculator"] floating enable, layout tabbed, sticky enable, resize set width 500 px height 700 px
+    for_window [app_id="$term" title="Calculator"] floating enable, layout tabbed, sticky enable, resize set width 500 px height 700 px
     bindsym $mod+c exec $term -t Calculator -e qalc    
 
 ### Browser
@@ -66,7 +76,7 @@
 
 ### Screenshot
     # Screenshot Directory
-    set $screendir $HOME/Creations/Screens
+    set $screendir $HOME/Records/Screens
     # Whole screen
     bindsym Print exec IMG=$screendir/$(date +%Y-%m-%d_%H-%M-%S).png && grim $IMG && wl-copy < $IMG
     # Selection
@@ -111,21 +121,16 @@
     default_border pixel #normal, pixel, none
 
     ### Popup [Waybar 'on-click' items: gotop, wavemon, alsamixer] Positioning
-    for_window [app_id="Alacritty" title="popup"] floating enable, resize set width 25 ppt height 25 ppt, move position 2850 30
+    for_window [app_id="$term" title="popup"] floating enable, resize set width 25 ppt height 25 ppt, move position 2850 30
     
     ### Persist mpv on all Workspaces
     for_window [app_id="mpv"] sticky enable, floating enable, move position 2800 1650
 
-    ### Status Bar
-    bar {
-        swaybar_command waybar
-        # When the status_command prints a new line to stdout, swaybar updates.
-        # The default just shows the current date and time.
-        status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
-    }
-}
 
 ## Key bindings
+
+# Turn numlock on
+input * xkb_numlock enabled
 
 ### Basics:
 
@@ -145,8 +150,37 @@
     bindsym $mod+Shift+c reload
 
     # Exit Sway/Wayland
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
-    for_window [title="^warning$"] floating enable, border pixel
+    #bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+    #for_window [title="^warning$"] floating enable, border pixel, move position 2800 1650
+	#
+	  # nag
+  set { 
+    $nag         exec swaynagmode
+    $nag_exit    $nag --exit
+    $nag_confirm $nag --confirm
+    $nag_select  $nag --select
+  }
+  mode "nag" {
+    bindsym {
+      Ctrl+d    mode "default"
+      Ctrl+c    $nag_exit
+      q         $nag_exit
+      Escape    $nag_exit
+      Return    $nag_confirm
+      Tab       $nag_select prev
+      Shift+Tab $nag_select next
+      Left      $nag_select next
+      Right     $nag_select prev
+      Up        $nag_select next
+      Down      $nag_select prev
+    }
+  }
+  bindsym {
+    $mod+Shift+e $nag -t "warning" -m "Exit Sway?" -b "Exit" "swaymsg exit" -b "Reload" "swaymsg reload"
+  }
+  # -R is recommended for swaynag_command so that, upon a syntax error in your sway config, the
+  # 'Reload Sway' option will be initially selected instead of the 'Exit Sway' option
+  swaynag_command $nag -R
 
 ### Media Keys
    

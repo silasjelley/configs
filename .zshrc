@@ -2,11 +2,18 @@
   export PATH=$PATH:$HOME/Binaries
   export PATH=$PATH:$HOME/Projects/Scripts
   export PATH=$PATH:$HOME/.cargo/bin
-
-# Startup
+# Environment
   export EDITOR=nvim
   export VISUAL="$EDITOR"
+  export LEDGER_FILE="$HOME/Records/Ledger/$(date +%Y).ledger"
+  export TERM="alacritty"
 # Aliases
+  ## Suffixes
+  alias -s txt=nvim
+  alias -s md=nvim
+
+  ## System
+  alias rwifi="nmcli radio wifi off && nmcli radio wifi on"
   ## Packages
   alias v="vim"
   alias nv="nvim"
@@ -46,21 +53,24 @@
   alias dnfi="sudo dnf install"
   alias dnfr="sudo dnf remove"
   alias dnfu="sudo dnf upgrade"
+  ## Arduino
+  alias arduino="arduino-cli --config-file $HOME/.config/arduion/arduino-cli.yaml"
+  alias arduino-cli="arduino-cli --config-file $HOME/.config/arduion/arduino-cli.yaml"
+  alias earduino="editor $HOME/.config/arduion/arduino-cli.yaml"
   ## Buku
   alias bm="buku"
   alias bma="buku -a"
   alias bms="buku -s"
   ## Git
-  alias gcsv="git commit -S -v"
-  alias gacsv="git add $1 && git commit -S -v $1"
+  alias gc="git commit -S -v"
+  alias ga="git add $1"
+  alias gp="git push -u origin master"
   ## Gopass
-  alias gop="gopass"
-  alias gopc="gopass -c"
-  alias gopi="gopass insert"
-  alias gope="gopass edit --create"
-  alias gopt="exa -TL1 $HOME/.password-store"
-  alias gopmv="gopass mv"
-  alias goprm="gopass rm"
+  alias pass="gopass"
+  alias passc="gopass -c"
+  alias passi="gopass insert"
+  alias passe="gopass edit --create"
+  alias passt="exa -TL2 $HOME/.password-store"
   ## Newsboat
   alias nb="newsboat"
   ## Task
@@ -68,16 +78,20 @@
   alias ta="task add"
   alias tl="task log"
   alias td="task done"
+  alias ts="task sync"
   alias tm="task modify"
   alias todo="task due or scheduled:today"
-  alias work="task add project:Work"
-  alias home="task add project:Home"
+  alias chore="task add project:Evans +Chores"
   alias urgent="task add +Reminder +Urgent due:today"
   alias remind="task add +Reminder" 
-  alias twolfe="task add project:Config +Wolfe"
-  alias tpanda="task add project:Config +Panda"
-  alias tsefna="task add project:Config +Sefna"
-  ## Youtube-DL
+  alias tcloud="task add project:Cloud +Config"
+  alias twolfe="task add project:Wolfe +Config"
+  alias tpanda="task add project:Panda +Config"
+  alias tsefna="task add project:Sefna +Cloud"
+  alias tevans="task add project:Evans"
+  ## Time
+  alias tw="timew"
+  #  ## Youtube-DL
   alias ydl="youtube-dl"
   ## Misc
   alias music="pgrep spotifyd | xargs kill && spotifyd && spt"
@@ -123,8 +137,8 @@ source $HOME/Binaries/antigen.zsh
 antigen use oh-my-zsh
 
 antigen bundle z
-antigen bundle git
-antigen bundle pip
+#antigen buddndle git
+#antigen bundle pip
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-completions

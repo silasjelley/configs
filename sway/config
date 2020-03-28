@@ -59,7 +59,7 @@
     bindsym $mod+c exec $term -t Calculator -e qalc    
 
 ### Browser
-    set $browser firefox-wayland
+    set $browser firefox
     bindsym $mod+Shift+b exec $browser
     # Firefox Picture-in-Picture Window
     for_window [app_id="firefox" title="^Picture-in-Picture$"] floating enable, move position 2900 1565, sticky enable
@@ -79,9 +79,11 @@
     # Screenshot Directory
     set $screendir $HOME/Records/Screens
     # Whole screen
-    bindsym Print exec IMG=$screendir/$(date +%Y-%m-%d_%H-%M-%S).png && grim $IMG && wl-copy < $IMG
+    bindsym Print exec IMG=$screendir/$(date +%Y-%m-%d_%H-%M-%S).png && grim $IMG && wl-copy < $IMG && \
+	notify-send "Screenshot saved to: $IMG"
     # Selection
-    bindsym $mod+Print exec IMG=$screendir/$(date +%Y-%m-%d_%H-%M-%S).png && grim -g "$(slurp)" $IMG && wl-copy < $IMGi
+    bindsym $mod+Print exec IMG=$screendir/$(date +%Y-%m-%d_%H-%M-%S).png && grim -g "$(slurp)" $IMG && \
+	wl-copy < $IMG && notify-send "Screenshot saved to: $IMG"
 
 ### Color Picker
     bindsym $mod+Shift+f exec 'farge --image-viewer mpv'

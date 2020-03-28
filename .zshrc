@@ -8,6 +8,8 @@
   export VISUAL="$EDITOR"
   export LEDGER_FILE="$HOME/Records/Ledger/$(date +%Y).ledger"
   export TERM="alacritty"
+  export GDK_BACKEND=wayland
+  export MOZ_ENABLE_WAYLAND=1
 # Aliases
   ## Suffixes
   alias -s txt=nvim

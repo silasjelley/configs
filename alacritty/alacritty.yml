@@ -23,7 +23,7 @@ scrolling:
 preview_images: true
 
 url: 
-    launcher: firefox-wayland --new-tab
+    launcher: firefox
      
 visual_bell:
   animation: EaseOutExpo

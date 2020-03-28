@@ -1,11 +1,19 @@
 " Set leader character
 let mapleader = "'"
 
+" Show buffer index in airline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
+
 " Disable arrow key navigation
 noremap <Up> <Nop>
 noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
+
+" Switch to next/previous buffer
+nnoremap <C-n> :bnext<CR>
+nnoremap <C-p> :bprevious<CR>
 
 " Move by one line (allows vim like movement even when dealing with paras
 nnoremap j gj
@@ -17,8 +25,23 @@ nnoremap <Leader>rr :%s//g<Left><Left>
 " Find and replace all of currently selected word
 nnoremap <Leader>RR :%s/\<<C-r><C-w>\>//g<Left><Left>
 
+" Surround current word with quotes
+nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
+
+" Insert current date
+nnoremap <F3> i<C-R>=strftime("%Y-%m-%d  ")<CR><Esc>
+inoremap <F3> <C-R>=strftime("%Y-%m-%d ")<CR>
+
+" Insert current time
+nnoremap <F4> i<C-R>=strftime("%H-%M-%S  ")<CR><Esc>
+inoremap <F4> <C-R>=strftime("%H-%M-%S ")<CR>
+
 " Return to normal mode
 inoremap jk <esc>
+
+" Move to the beginning and end of current line respectively
+nnoremap H _
+nnoremap L $
 
 " Nerdtree
 nnoremap  <leader>] :NERDTreeToggle<CR>

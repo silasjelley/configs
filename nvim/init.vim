@@ -1,7 +1,7 @@
 " Source Configs
 source ~/.config/nvim/plugins.vim
 source ~/.config/nvim/bindings.vim
-" source ~/.config/nvim/abbreviations.vim
+source ~/.config/nvim/abbreviations.vim
 source ~/.config/nvim/coc.vim
 " source ~/.config/nvim/theme.vim
 

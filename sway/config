@@ -11,8 +11,9 @@
     bar { 
 	swaybar_command waybar 
 	}
-    # Start mako Notification Daemon
+    # Start mako Notification Daemon and set binds
     exec mako
+	bindsym $mod+n exec makoctl dismiss
     # Start Spotify Daemon
     exec spotifyd
     # Start wob daemon

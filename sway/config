@@ -18,6 +18,8 @@
     exec spotifyd
     # Start wob daemon
     exec mkfifo $SWAYSOCK.wob && tail -f $SWAYSOCK.wob | wob
+	# Start keyring daemon
+	exec gnome-keyring-daemon
 
 ### Terminal
     set $term alacritty

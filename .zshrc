@@ -7,6 +7,7 @@
   export EDITOR=nvim
   export VISUAL="$EDITOR"
   export LEDGER_FILE="$HOME/Records/Ledger/$(date +%Y).ledger"
+  export ALL_LEDGER_FILE="$HOME/Records/Ledger/all.ledger"
   export TERM="alacritty"
   export GDK_BACKEND=wayland
   export MOZ_ENABLE_WAYLAND=1
@@ -78,11 +79,12 @@
   alias passc="gopass -c"
   alias passi="gopass insert"
   alias passe="gopass edit --create"
-  alias passt="exa -TL2 $HOME/.password-store"
-  ## Journal
+  alias passt="exa -TD $HOME/.password-store"
+  ## Journaling / Record Keeping
   alias journal="record-journal"
   alias weight="record-health -weight"
   alias slept="record-health -sleep"
+  alias note="record-note"
   ## Newsboat
   alias nb="newsboat"
   ## Task

@@ -79,7 +79,7 @@
 
 ### Screenshot
     # Screenshot Directory
-    set $screendir $HOME/Records/Screens
+    set $screendir $HOME/Archive/Systems/Wolfe/Screens
     # Whole screen
     bindsym Print exec IMG=$screendir/$(date +%Y-%m-%d_%H-%M-%S).png && grim $IMG && wl-copy < $IMG && \
 	notify-send "Screenshot saved to: $IMG"
@@ -114,8 +114,8 @@
     set $black #212121
     set $grey #313131
     
-    ### Set Colors	      border    backgr.   text     indicator child_border
-    client.focused            $accent   $accent   $black   $black    $white
+    ### Set Colors	          border    backgr.   text     indicator child_border
+    client.focused            $accent   $accent   $black   $white    $white
     client.focused_inactive   $grey     $grey     $accent  $black    $grey
     client.unfocused          $grey     $grey     $white   $black    $grey
     client.background         $black
@@ -126,10 +126,10 @@
     default_border pixel #normal, pixel, none
 
     ### Popup [Waybar 'on-click' items: gotop, wavemon, alsamixer] Positioning
-    for_window [app_id="$term" title="popup"] floating enable, resize set width 25 ppt height 25 ppt, move position 2850 30
+    for_window [app_id="$term" title="popup"] floating enable, resize set width 25 ppt height 25 ppt, move position 2830 5
     
     ### Persist mpv on all Workspaces
-    for_window [app_id="mpv"] sticky enable, floating enable, move position 2800 1650
+    for_window [app_id="mpv"] sticky enable, floating enable, move position 2600 1450
 
 
 ## Key bindings

@@ -1,10 +1,6 @@
 " Set leader character
 let mapleader = "'"
 
-" Show buffer index in airline
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#buffer_nr_show = 1
-
 " Disable arrow key navigation
 noremap <Up> <Nop>
 noremap <Down> <Nop>
@@ -38,6 +34,9 @@ inoremap <F4> <C-R>=strftime("%H-%M-%S ")<CR>
 
 " Return to normal mode
 inoremap jk <esc>
+
+" Delete current word from insert mode
+inoremap jh <C-O>:normal bdw<CR>
 
 " Move to the beginning and end of current line respectively
 nnoremap H _

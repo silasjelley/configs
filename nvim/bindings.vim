@@ -25,12 +25,15 @@ nnoremap <Leader>RR :%s/\<<C-r><C-w>\>//g<Left><Left>
 nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
 
 " Insert current date
-nnoremap <F3> i<C-R>=strftime("%Y-%m-%d  ")<CR><Esc>
+nnoremap <F3> i<C-R>=strftime("%Y-%m-%d  ")<CR><esc>
 inoremap <F3> <C-R>=strftime("%Y-%m-%d ")<CR>
 
 " Insert current time
-nnoremap <F4> i<C-R>=strftime("%H-%M-%S  ")<CR><Esc>
+nnoremap <F4> i<C-R>=strftime("%H-%M-%S  ")<CR><esc>
 inoremap <F4> <C-R>=strftime("%H-%M-%S ")<CR>
+
+" Prepend 'x $DATE' to line and move to end of file
+nnoremap ccc 0i<C-R>=strftime("x %Y-%m-%d ")<CR><esc>ddGp<C-o><esc>
 
 " Return to normal mode
 inoremap jk <esc>
@@ -38,9 +41,8 @@ inoremap jk <esc>
 " Delete current word from insert mode
 inoremap jh <C-O>:normal bdw<CR>
 
-" Move to the beginning and end of current line respectively
-nnoremap H _
-nnoremap L $
+" Toggle spellcheck
+nnoremap <F7> :set spell! spell?<CR>
 
 " Nerdtree
 nnoremap  <leader>] :NERDTreeToggle<CR>

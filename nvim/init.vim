@@ -5,6 +5,19 @@ source ~/.config/nvim/abbreviations.vim
 source ~/.config/nvim/coc.vim
 " source ~/.config/nvim/theme.vim
 
+" Statusline
+    " Elements
+    set statusline=%#NonText#                       " text color
+    set statusline+=\ \                             " padding
+    set statusline+=%.40F                           " full path truncated to 40 chars
+    set statusline+=%#Statement#%.3m%*%#NonText#\   " modified status in red
+    set statusline+=%=                              " switch right side
+    set statusline+=\ %4l/%-4L\ %p%%                " line count and percentage
+    set statusline+=\ %3c                           " char number
+    set statusline+=\ \ \                           " padding
+
+    " Colors
+
 " Smartcase search
 set ignorecase
 set smartcase
@@ -45,19 +58,19 @@ set clipboard+=unnamedplus
 " Highlight the current line
 set ruler
 set cursorline
-hi CursorLine term=bold cterm=bold
+hi CursorLine term=bold cterm=bold gui=bold 
 
 " Hide tildes from file end
 hi! EndOfBuffer ctermbg=bg ctermfg=bg guibg=bg guifg=bg
 
 " Syntax highlighting and rules for specific files
-autocmd BufNewFile,BufRead bookmarks.txt set syntax=bookmarks
-autocmd BufNewFile,BufRead quotes.txt set syntax=bookmarks
-autocmd BufNewFile,BufRead todo.txt set syntax=bookmarks
-autocmd BufNewFile,BufRead more.txt set syntax=bookmarks
-autocmd BufNewFile,BufRead log.txt set syntax=logbook
-autocmd BufNewFile,BufRead *.txt Limelight | set spell
+" autocmd BufNewFile,BufRead *.txt Limelight | set spell
 autocmd BufNewFile,BufRead *.md Limelight | set spell
+autocmd BufNewFile,BufRead marks.txt Limelight! | set syntax=notes | set nospell
+autocmd BufNewFile,BufRead quotes.txt set syntax=notes
+autocmd BufNewFile,BufRead todo.txt set syntax=notes
+autocmd BufNewFile,BufRead more.txt set syntax=notes
+autocmd BufNewFile,BufRead time.txt set syntax=notes
 
 
 

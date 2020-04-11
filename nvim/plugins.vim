@@ -13,7 +13,7 @@ Plug 'junegunn/goyo.vim',{'as':'goyo'}
 Plug 'junegunn/limelight.vim',{'as':'limelight'}
 
 " Airline
-Plug 'vim-airline/vim-airline',{'as':'airline'}
+" Plug 'vim-airline/vim-airline',{'as':'airline'}
 
 " Highlight Yank
 Plug 'machakann/vim-highlightedyank',{'as':'highlightedyank'}

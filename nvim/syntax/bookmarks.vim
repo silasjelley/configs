@@ -15,8 +15,8 @@ syn match bm_url 'http://..*'
 syn match bm_url 'https://.*'
 syn match bm_date '\d\d\d\d-\d\d-\d\d '
 
-hi bm_tag guifg=#005c65
+hi bm_tag guifg=#6272a4
 hi bm_url guifg=#ababab
-hi bm_date guifg=#ababab
-hi bm_title guifg=#ffffff
+hi bm_date guifg=#282a36
+hi bm_title guifg=#bd93f9
 

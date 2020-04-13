@@ -27,7 +27,7 @@
     bindsym $mod+Return exec $term
     # Floating
     for_window [app_id="$term" title="Float"] floating enable, \
-	resize set width 25 ppt height 55 ppt
+	resize set width 30 ppt height 70 ppt
     bindsym $mod+Shift+Return exec $term -t "Float" 
     # Scratchpad 
 	exec $term --title Scratch 

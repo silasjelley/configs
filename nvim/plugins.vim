@@ -8,12 +8,8 @@ Plug 'neoclide/coc.nvim',{'branch':'release','as':'coc'}
 " Polyglot - Expanded syntax highlighting
 Plug 'sheerun/vim-polyglot'
 
-" Goyo + Limelight - Distraction-free writing in Vim
+" Goyo - Distraction-free writing in Vim
 Plug 'junegunn/goyo.vim',{'as':'goyo'}
-Plug 'junegunn/limelight.vim',{'as':'limelight'}
-
-" Airline
-" Plug 'vim-airline/vim-airline',{'as':'airline'}
 
 " Highlight Yank
 Plug 'machakann/vim-highlightedyank',{'as':'highlightedyank'}

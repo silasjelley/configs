@@ -33,7 +33,10 @@ nnoremap <F4> i<C-R>=strftime("%H-%M-%S  ")<CR><esc>
 inoremap <F4> <C-R>=strftime("%H-%M-%S ")<CR>
 
 " Prepend 'x $DATE' to line and move to end of file
-nnoremap ccc 0i<C-R>=strftime("x %Y-%m-%d ")<CR><esc>ddGp<C-o><esc>
+nnoremap <leader>xx 0i<C-R>=strftime("x %Y-%m-%d ")<CR><esc>ddGp<C-o><esc>
+
+" Change caret to plus
+nnoremap <leader>cc lF>xi+<esc>
 
 " Return to normal mode
 inoremap jk <esc>
@@ -44,12 +47,9 @@ inoremap jh <C-O>:normal bdw<CR>
 " Toggle spellcheck
 nnoremap <F7> :set spell! spell?<CR>
 
-" Nerdtree
-nnoremap  <leader>] :NERDTreeToggle<CR>
-
 " Goyo + Limelight + Spell check + Hide tilde
 nnoremap <Leader>gy :Goyo<CR>
-autocmd! User GoyoEnter Limelight | set spell | hi! EndOfBuffer ctermbg=bg ctermfg=bg guibg=bg guifg=bg | 
-autocmd! User GoyoLeave Limelight!| set nospell | quit
+autocmd! User GoyoEnter | set spell | hi! EndOfBuffer ctermbg=bg ctermfg=bg guibg=bg guifg=bg | 
+autocmd! User GoyoLeave | set nospell | quit
 
 

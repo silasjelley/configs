@@ -12,7 +12,12 @@
 			  \<esc>:r!date +'\%A' -d 'tomorrow'
 			  \<CR>:r!date +'\%d \%B \%Y' -d 'tomorrow'
 			  \<CR>:r!echo '============='
-			  \<CR>:r!echo
+			  \<CR>:r!echo '00:00 - 00:00 Sleep; '
+			  \<CR>:r!echo '07:00 - 07:45 Practice touch typing'
+			  \<CR>:r!echo '10:00 - 10:40 Run/Walk/Cycle with Rose'
+			  \<CR>:r!echo '11:00 - 11:30 Practice Spanish'
+			  \<CR>:r!echo ''
+			  \<CR>:r!echo '              Practice juggling'
 			  \<CR>:r!echo '============='
 			  \<CR>ki
   :ab mmm <C-R>=strftime('%Y-%m-')<CR>

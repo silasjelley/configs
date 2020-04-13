@@ -25,7 +25,7 @@ set smartcase
 set nocompatible
 set encoding=utf-8
 scriptencoding utf-8
-set mouse=a
+set mouse=a             "Enable mouse
 set updatetime=300
 
 " Tabs
@@ -65,16 +65,11 @@ hi! EndOfBuffer ctermbg=bg ctermfg=bg guibg=bg guifg=bg
 
 " Syntax highlighting and rules for specific files
 " autocmd BufNewFile,BufRead *.txt Limelight | set spell
-autocmd BufNewFile,BufRead *.md Limelight | set spell
-autocmd BufNewFile,BufRead marks.txt Limelight! | set syntax=notes | set nospell
+autocmd BufNewFile,BufRead *.md set spell
+autocmd BufNewFile,BufRead marks.txt | set syntax=notes | set nospell
 autocmd BufNewFile,BufRead quotes.txt set syntax=notes
-autocmd BufNewFile,BufRead todo.txt set syntax=notes
-autocmd BufNewFile,BufRead more.txt set syntax=notes
+autocmd BufNewFile,BufRead todo.txt set syntax=todo
+autocmd BufNewFile,BufRead more.txt set syntax=todo
 autocmd BufNewFile,BufRead time.txt set syntax=notes
 
-
-
-" Show buffer index in airline
-" let g:airline#extensions#tabline#enabled = 1
-" let g:airline#extensions#tabline#buffer_nr_show = 1
 

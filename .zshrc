@@ -11,6 +11,7 @@
   export TERM="alacritty"
   export GDK_BACKEND=wayland
   export MOZ_ENABLE_WAYLAND=1
+  export MOZ_WEBRENDER=1
 # Aliases
   ## Suffixes
   alias -s txt=nvim
@@ -88,8 +89,9 @@
   alias slept="record-health -sleep"
   alias quote="$EDITOR $HOME/Records/Notes/quotes.txt"
   alias note="record-note"
-  alias logtxt="$EDITOR $HOME/Records/log.txt"
-  alias bm="$EDITOR $HOME/Records/Notes/bookmarks.txt"
+  alias log="$EDITOR $HOME/Records/time.txt"
+  alias more="$EDITOR $HOME/Records/more.txt"
+  alias bm="$EDITOR $HOME/Records/Notes/Lists/marks.txt"
   ## Ledger
   alias groceries="hledger -f ~/Records/Ledger/Groceries/groceries.ledger"
   ## Newsboat
@@ -132,14 +134,9 @@
   setopt notify                 # Report the status of background jobs immediately, rather than waiting until just before printing a prompt.
   setopt share_history          # Import new commands from the history file, and append typed commands to the history file.
 
-# The following lines were added by compinstall
-
-#zstyle ':completion:*' menu select completer _expand _complete _ignored _correct _approximate
-#zstyle :compinstall filename '$HOME/.zshrc'
-
-#autoload -Uz compinit
-#compinit
-# End of lines added by compinstall
+# Prevent .zcompdump files cluterring ~/
+autoload -Uz compinit
+compinit -d ~/.cache/zsh/zcompdump-$ZSH_VERSION
 
 # History
 

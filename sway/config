@@ -19,7 +19,7 @@
     # Start wob daemon
     exec mkfifo $SWAYSOCK.wob && tail -f $SWAYSOCK.wob | wob
 	# Start keyring daemon
-	exec gnome-keyring-daemon
+	#exec gnome-keyring-daemon
 
 ### Terminal
     set $term alacritty
@@ -39,10 +39,11 @@
 ### Launchers
 	# Launcher Style
     for_window [app_id="$term" title="launcher"] floating enable, \
-	layout tabbed, sticky enable, resize set height 220 px
+	layout tabbed, sticky enable, resize set height 500 px
 	# Layout Chooser
 	exec alacritty -t launcher -e bash -c 'compgen -c | fzf -e --no-sort --history $HOME/.fzf_history -q layout- --margin 1 | xargs -r swaymsg -t command exec'
     # Application Launcher
+    #bindsym $mod+d exec "alacritty -t launcher -e $HOME/Projects/Scripts/system-launcher"
     #set $menu dmenu_path | wofi --show drun -i | xargs swaymsg exec --¬ ## Wofi version
     set $menu $term -t launcher -e zsh -c 'fd . -e desktop /usr/share/app* | \
 	xargs basename -s .desktop -a | fzf -e --history $HOME/.fzf_history |    \
@@ -74,7 +75,7 @@
 	for_window [class="MuPDF"] floating enable, border pixel
 
 ### Lockscreen
-    set $lock system-lock && swaylock
+    set $lock "system-lock && swaylock"
     bindsym Control+$mod+l exec $lock
 
 ### Screenshot
@@ -88,7 +89,7 @@
 	wl-copy < $IMG && notify-send "Screenshot saved to: $IMG"
 
 ### Color Picker
-    bindsym $mod+Shift+f exec 'farge --image-viewer mpv'
+    bindsym $mod+Shift+f exec 'farge --image-viewer imv'
 
 ### Idle
     exec swayidle -w \
@@ -314,16 +315,16 @@ input * xkb_numlock enabled
 	# right will grow the containers width
 	# up will shrink the containers height
 	# down will grow the containers height
-	bindsym $left resize shrink width 10px
-	bindsym $down resize grow height 10px
-	bindsym $up resize shrink height 10px
-	bindsym $right resize grow width 10px
+	bindsym $left resize shrink width 20px
+	bindsym $down resize grow height 20px
+	bindsym $up resize shrink height 20px
+	bindsym $right resize grow width 20px
 
 	# ditto, with arrow keys
-	bindsym Left resize shrink width 10px
-	bindsym Down resize grow height 10px
-	bindsym Up resize shrink height 10px
-	bindsym Right resize grow width 10px
+	bindsym Left resize shrink width 20px
+	bindsym Down resize grow height 20px
+	bindsym Up resize shrink height 20px
+	bindsym Right resize grow width 20px
 
 	# return to default mode
 	bindsym Return mode "default"
@@ -333,6 +334,10 @@ input * xkb_numlock enabled
 
 # Enable Xwayland support, which allows X11 applications to be used.
 xwayland enable
+
+# Inhibit idle on full screen windows 
+for_window [class="^.*"] inhibit_idle fullscreen
+for_window [app_id="^.*"] inhibit_idle full
 
 
 include /etc/sway/config.d/*

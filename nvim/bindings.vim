@@ -52,4 +52,8 @@ nnoremap <Leader>gy :Goyo<CR>
 autocmd! User GoyoEnter | set spell | hi! EndOfBuffer ctermbg=bg ctermfg=bg guibg=bg guifg=bg | 
 autocmd! User GoyoLeave | set nospell | quit
 
-
+" Automated bracket and quote setting
+inoremap ( ()<Esc>i
+inoremap { {}<Esc>i
+inoremap [ []<Esc>i
+inoremap < <><Esc>i

@@ -6,14 +6,14 @@
 # Environment
   export EDITOR=nvim
   export VISUAL="$EDITOR"
-  export LEDGER_FILE="$HOME/Records/Ledger/$(date +%Y).ledger"
-  export ALL_LEDGER_FILE="$HOME/Records/Ledger/all.ledger"
+  export LEDGER_FILE="$HOME/Records/Ledger/full.ledger"
   export TERM="alacritty"
   export GDK_BACKEND=wayland
   export MOZ_ENABLE_WAYLAND=1
   export MOZ_WEBRENDER=1
+  export MAKEFLAGS="-j$(nproc)" # Used by arch's makepkg to enable multi-core package building
 # Aliases
-  ## Suffixes
+## Suffixes
   alias -s txt=nvim
   alias -s md=nvim
 
@@ -23,8 +23,17 @@
   ## Packages
   alias v="vim"
   alias nv="nvim"
-  alias $EDITOR="nvim"
   alias e="$EDITOR"  
+  ## Package Management
+  # pacman
+  alias pkg="sudo pacman -S --needed"
+  alias pkgr="sudo pacman -Rs"
+  alias pkgs="pacman -Ss"
+  alias pkgq="pacman -Qqs"
+  # DNF
+  alias dnfi="sudo dnf install"
+  alias dnfr="sudo dnf remove"
+  alias dnfu="sudo dnf upgrade"
   ## Edit Configs
   alias ezsh="$EDITOR $HOME/.zshrc"
   alias rzsh="exec zsh"
@@ -33,6 +42,7 @@
   alias evbind="$EDITOR $HOME/.config/nvim/bindings.vim"
   alias evplug="$EDITOR $HOME/.config/nvim/plugins.vim"
   alias evabbr="$EDITOR $HOME/.config/nvim/abbreviations.vim"
+  alias evfunc="$EDITOR $HOME/.config/nvim/functions.vim"
   alias evcoc="$EDITOR $HOME/.config/nvim/coc.vim"
   alias ebash="$EDITOR $HOME/.bashrc"
   alias rbash="source $HOME/.bashrc"
@@ -57,10 +67,6 @@
   alias epackages-remove="$EDITOR $HOME/Records/Notes/Systems/Wolfe/packages-remove"
   alias epackages-sundry="$EDITOR $HOME/Records/Notes/Systems/Wolfe/packages-sundry"
   alias epackages-utils="$EDITOR $HOME/Records/Notes/Systems/Wolfe/packages-utils"
-  ## Package Management
-  alias dnfi="sudo dnf install"
-  alias dnfr="sudo dnf remove"
-  alias dnfu="sudo dnf upgrade"
   ## Arduino
   alias arduino="arduino-cli --config-file $HOME/.config/arduion/arduino-cli.yaml"
   alias arduino-cli="arduino-cli --config-file $HOME/.config/arduion/arduino-cli.yaml"
@@ -83,15 +89,17 @@
   alias passe="gopass edit --create"
   alias passg="gopass generate"
   alias passt="exa -TD $HOME/.password-store"
+  alias pm="gopass move"
+  alias pe="gopass edit --create"
   ## Journaling / Record Keeping
-  alias journal="record-journal"
+  #alias journal="record-journal"
   alias weight="record-health -weight"
   alias slept="record-health -sleep"
-  alias quote="$EDITOR $HOME/Records/Notes/quotes.txt"
+  alias quote="record-quote"
   alias note="record-note"
-  alias log="$EDITOR $HOME/Records/time.txt"
-  alias more="$EDITOR $HOME/Records/more.txt"
-  alias bm="$EDITOR $HOME/Records/Notes/Lists/marks.txt"
+  alias log="$EDITOR $HOME/Records/Memory/time.txt"
+  alias more="$EDITOR $HOME/Records/Memory/more.txt"
+  alias bm="$EDITOR $HOME/Records/Notes/Lists/bookmarks.txt"
   ## Ledger
   alias groceries="hledger -f ~/Records/Ledger/Groceries/groceries.ledger"
   ## Newsboat
@@ -112,14 +120,15 @@
   #alias tpanda="task add project:Panda +Config"
   #alias tsefna="task add project:Sefna +Cloud"
   #alias tevans="task add project:Evans"
-  alias todo="$EDITOR $HOME/Records/todo.txt"
-  alias moretodo="$EDITOR $HOME/Records/more.txt"
+  alias todo="$EDITOR $HOME/Records/Memory/todo.txt"
+  alias moretodo="$EDITOR $HOME/Records/Notes/more.txt"
   ## Time
   alias tw="timew"
   #  ## Youtube-DL
   alias ydl="youtube-dl"
   ## Misc
   alias epoch="date +%s"
+  alias blogtree="exa -TL1 --group-directories-first --ignore-glob=\"Caddyfile|node_modules|package*\" $HOME/Projects/Blog"
 
 # Options
   setopt always_to_end          # Move the cursor to the end of the word after each completion.
@@ -141,13 +150,10 @@ compinit -d ~/.cache/zsh/zcompdump-$ZSH_VERSION
 # History
 
 HISTFILE=$HOME/.zsh_history
-HISTSIZE=50000
-SAVEHIST=10000
+HISTSIZE=5000000
+SAVEHIST=5000000
 setopt hist_ignore_space
 setopt appendhistory
-
-# Vim Style
-bindkey -v
 
 # Antigen Config
 source $HOME/Binaries/antigen.zsh
@@ -172,4 +178,5 @@ antigen apply
 # Enable Startship Prompt (Installed Seperately
 #eval "$(starship init zsh)"
 
-[ -f $HOME/.resh/shellrc ] && source $HOME/.resh/shellrc
+# Vim Style
+# bindkey -v

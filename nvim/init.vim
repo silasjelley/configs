@@ -2,6 +2,7 @@
 source ~/.config/nvim/plugins.vim
 source ~/.config/nvim/bindings.vim
 source ~/.config/nvim/abbreviations.vim
+source ~/.config/nvim/functions.vim
 source ~/.config/nvim/coc.vim
 " source ~/.config/nvim/theme.vim
 
@@ -66,10 +67,20 @@ hi! EndOfBuffer ctermbg=bg ctermfg=bg guibg=bg guifg=bg
 " Syntax highlighting and rules for specific files
 " autocmd BufNewFile,BufRead *.txt Limelight | set spell
 autocmd BufNewFile,BufRead *.md set spell
-autocmd BufNewFile,BufRead marks.txt | set syntax=notes | set nospell
+autocmd BufNewFile,BufRead bookmarks.txt | set syntax=notes | set nospell
 autocmd BufNewFile,BufRead quotes.txt set syntax=notes
 autocmd BufNewFile,BufRead todo.txt set syntax=todo
 autocmd BufNewFile,BufRead more.txt set syntax=todo
+autocmd BufNewFile,BufRead journal.txt set syntax=todo
 autocmd BufNewFile,BufRead time.txt set syntax=notes
 
+" For ledger
+au BufNewFile,BufRead *.ledger setf ledger | comp ledger
+let g:ledger_maxwidth = 120
+let g:ledger_fold_blanks = 1
+function LedgerSort()
+    :%! hledger -f - print
+    :%LedgerAlign
+endfunction
+command LedgerSort call LedgerSort()
 

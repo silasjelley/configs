@@ -28,6 +28,9 @@ endif
         " Date & time
         syn match date '\d\d\d\d-\d\d-\d\d ' | hi date guifg=#44475a
         syn match time '\d\d:\d\d - \d\d:\d\d' | hi time guifg=#44475a
+        " Active task (determined to be and block that has a beginning time
+        " but no end)
+        syn match task_active '^\d\d:\d\d - \a.*' | highlight default link task_active PreProc
 
     " Bookmarks
 

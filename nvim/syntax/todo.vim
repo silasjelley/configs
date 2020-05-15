@@ -14,6 +14,7 @@ syntax  match  TodoPriorityB  '^([bB])\s.\+$'             contains=TodoDate,Todo
 syntax  match  TodoPriorityC  '^([cC])\s.\+$'             contains=TodoDate,TodoProject,TodoContext,OverDueDate
 
 syntax  match  TodoDate       '\d\{2,4\}-\d\{2\}-\d\{2\}' contains=NONE
+syntax  match  TodoTime       '\d\{2\}:\d\{2\}:\d\{2\}' contains=NONE
 syntax  match  TodoProject    '\(^\|\W\)+[^[:blank:]]\+'  contains=NONE
 syntax  match  TodoContext    '\(^\|\W\)@[^[:blank:]]\+'  contains=NONE
 
@@ -23,6 +24,7 @@ highlight  default  link  TodoPriorityA  Constant
 highlight  default  link  TodoPriorityB  Statement
 highlight  default  link  TodoPriorityC  Identifier
 highlight  default  link  TodoDate       PreProc
+highlight  default  link  TodoTime       Define
 highlight  default  link  TodoProject    Special
 highlight  default  link  TodoContext    Special
 

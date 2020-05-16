@@ -75,8 +75,8 @@
 	for_window [class="MuPDF"] floating enable, border pixel
 
 ### Lockscreen
-    set $lock "system-lock && swaylock"
-    bindsym Control+$mod+l exec $lock
+    #set $lock "system-lock && swaylock"
+    #bindsym Control+$mod+l exec $lock
 
 ### Screenshot
     # Screenshot Directory
@@ -92,11 +92,11 @@
     bindsym $mod+Shift+f exec 'farge --image-viewer imv'
 
 ### Idle
-    exec swayidle -w \
-	timeout 300 'system-lock && swaylock' \
-	timeout 600 'swaymsg "output * dpms off"' \
-		resume 'swaymsg "output * dpms on"' \
-	before-sleep 'system-lock && swaylock' 
+    #exec swayidle -w \
+	#timeout 300 'system-lock && swaylock' \
+	#timeout 600 'swaymsg "output * dpms off"' \
+	#	resume 'swaymsg "output * dpms on"' \
+	#before-sleep 'system-lock && swaylock' 
 
 ### Gopass Bridge
     for_window [title="Gopass Bridge"] floating enable
@@ -333,7 +333,7 @@ input * xkb_numlock enabled
 	bindsym $mod+r mode "resize"
 
 # Enable Xwayland support, which allows X11 applications to be used.
-xwayland enable
+xwayland disable
 
 # Inhibit idle on full screen windows 
 for_window [class="^.*"] inhibit_idle fullscreen

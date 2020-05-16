@@ -1,17 +1,3 @@
-# PATH
-  export PATH=$PATH:$HOME/Binaries
-  export PATH=$PATH:$HOME/Projects/Scripts
-  export PATH=$PATH:$HOME/.cargo/bin
-  export PATH=$PATH:$HOME/.local/bin
-# Environment
-  export EDITOR=nvim
-  export VISUAL="$EDITOR"
-  export LEDGER_FILE="$HOME/Records/Ledger/full.ledger"
-  export TERM="alacritty"
-  export GDK_BACKEND=wayland
-  export MOZ_ENABLE_WAYLAND=1
-  export MOZ_WEBRENDER=1
-  export MAKEFLAGS="-j$(nproc)" # Used by arch's makepkg to enable multi-core package building
 # Aliases
 ## Suffixes
   alias -s txt=nvim
@@ -36,6 +22,7 @@
   alias dnfu="sudo dnf upgrade"
   ## Edit Configs
   alias ezsh="$EDITOR $HOME/.zshrc"
+  alias eenv="$EDITOR $HOME/.zshenv"
   alias rzsh="exec zsh"
   alias evim="$EDITOR $HOME/.vimrc"
   alias envim="$EDITOR $HOME/.config/nvim/init.vim"
@@ -49,8 +36,6 @@
   alias esway="$EDITOR $HOME/.config/sway/config"
   alias eswaylock="$EDITOR $HOME/.config/swaylock/config"
   alias ealac="$EDITOR $HOME/.config/alacritty/alacritty.yml"
-  alias ekitty="$EDITOR $HOME/.config/kitty/kitty.conf"
-  alias ekcols="$EDITOR $HOME/.config/kitty/colors.conf"
   alias ewaybar="$EDITOR $HOME/.config/waybar/config"
   alias ewaycss="$EDITOR $HOME/.config/waybar/style.css"
   alias emako="$EDITOR $HOME/.config/mako/config"
@@ -98,8 +83,8 @@
   alias quote="record-quote"
   alias note="record-note"
   alias log="$EDITOR $HOME/Records/Memory/time.txt"
-  alias more="$EDITOR $HOME/Records/Memory/more.txt"
-  alias bm="$EDITOR $HOME/Records/Notes/Lists/bookmarks.txt"
+  alias more="$EDITOR $MORE_FILE"
+  alias bm="$EDITOR $BOOKMARKS_FILE"
   ## Ledger
   alias groceries="hledger -f ~/Records/Ledger/Groceries/groceries.ledger"
   ## Newsboat
@@ -120,8 +105,8 @@
   #alias tpanda="task add project:Panda +Config"
   #alias tsefna="task add project:Sefna +Cloud"
   #alias tevans="task add project:Evans"
-  alias todo="$EDITOR $HOME/Records/Memory/todo.txt"
-  alias moretodo="$EDITOR $HOME/Records/Notes/more.txt"
+  alias todo="$EDITOR $TODO_FILE"
+  alias moretodo="$EDITOR $MORE_FILE"
   ## Time
   alias tw="timew"
   #  ## Youtube-DL

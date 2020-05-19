@@ -1,5 +1,7 @@
 " Set leader character
-let mapleader = "'"
+" The mapping of space to <leader> (rather than <leader> to space) 
+" allows 'showcmd' to function properly
+map <space> <Leader>
 
 " Disable arrow key navigation
 noremap <Up> <Nop>
@@ -57,3 +59,15 @@ inoremap ( ()<Esc>i
 inoremap { {}<Esc>i
 inoremap [ []<Esc>i
 inoremap < <><Esc>i
+
+" Transform a URL into my bookmark format
+nnoremap <leader>BB :normal ddp<CR>
+
+" Source vimrc with <Leader>vc
+nnoremap <Leader>vc :source ~/.config/nvim/init.vim<CR>:echo "Reloaded init.vim"<CR>
+
+" Split vertically and change to the split
+nnoremap <Leader>vb <C-w>v
+
+" Split vertically and change to the split
+nnoremap <Leader>vv <C-w>s

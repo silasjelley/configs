@@ -17,9 +17,5 @@ Plug 'machakann/vim-highlightedyank',{'as':'highlightedyank'}
 " Ledger Support
 Plug 'ledger/vim-ledger',{'as':'ledger'}
 
-"Themes
-" Oceanic
-Plug 'mhartington/oceanic-next',{'as':'oceanic'}
-
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()

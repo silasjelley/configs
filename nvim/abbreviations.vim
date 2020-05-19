@@ -14,11 +14,6 @@
 			  \<esc>:r!date +'\%A'
 			  \<CR>:r!date +'\%d \%B \%Y'
 			  \<CR>:r!echo '============='
-			  \<CR>:r!echo 'TODO Practice touch typing'
-			  \<CR>:r!echo 'TODO Run/Walk/Cycle with Rose'
-			  \<CR>:r!echo 'TODO Practice Spanish'
-			  \<CR>:r!echo 'TODO Practice juggling'
-			  \<CR>:r!echo 'TODO Take a good photograph'
 			  \<CR>:r!echo '00:00 - 00:00 Sleep; '
 			  \<CR>:r!echo '============='
 			  \<CR>ki
@@ -26,11 +21,6 @@
 			  \<esc>:r!date +'\%A' -d 'tomorrow'
 			  \<CR>:r!date +'\%d \%B \%Y' -d 'tomorrow'
 			  \<CR>:r!echo '============='
-			  \<CR>:r!echo 'TODO Practice touch typing'
-			  \<CR>:r!echo 'TODO Run/Walk/Cycle with Rose'
-			  \<CR>:r!echo 'TODO Practice Spanish'
-			  \<CR>:r!echo 'TODO Practice juggling'
-			  \<CR>:r!echo 'TODO Take a good photograph'
 			  \<CR>:r!echo '00:00 - 00:00 Sleep; '
 			  \<CR>:r!echo '============='
 			  \<CR>ki

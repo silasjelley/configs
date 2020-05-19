@@ -1,3 +1,8 @@
+# Autostart sway
+#if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
+#  XKB_DEFAULT_LAYOUT=us exec sway
+#fi
+
 # Aliases
 ## Suffixes
   alias -s txt=nvim
@@ -30,6 +35,7 @@
   alias evplug="$EDITOR $HOME/.config/nvim/plugins.vim"
   alias evabbr="$EDITOR $HOME/.config/nvim/abbreviations.vim"
   alias evfunc="$EDITOR $HOME/.config/nvim/functions.vim"
+  alias evtheme="$EDITOR $HOME/.config/nvim/colors/theme.vim"
   alias evcoc="$EDITOR $HOME/.config/nvim/coc.vim"
   alias ebash="$EDITOR $HOME/.bashrc"
   alias rbash="source $HOME/.bashrc"

@@ -5,7 +5,7 @@
 
 #window {
     font-weight: bold;
-    font-family: "Ubuntu";
+    font-family: Roboto; 
 }
 
 window#waybar {

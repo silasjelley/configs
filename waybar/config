@@ -3,14 +3,13 @@
     "layer": "top", // Locate waybar above or below windows
     "position": "top", // Location of waybar on screen
     "height": 36, // Height of waybar
-    "width": 50, // Waybar width
     "margin-left": 30,
     "margin-right": 30,
     // Choose the order of the modules
-    "modules-left": ["sway/workspaces", "sway/mode"],
+    "modules-left": ["sway/workspaces", "sway/mode", "sway/window"],
     "modules-center": ["clock"],
     "modules-right": ["idle_inhibitor", "tray", "pulseaudio", "network", "cpu",
-    "memory", "temperature", "disk", "battery"],
+    "memory", "temperature", "disk"],
     "sway/workspaces": {
         "persistent_workspaces": {
             "1": [],
@@ -60,7 +59,7 @@
 	"on-click": "alacritty -t popup -e gotop"
     },
     "memory": {
-        "format": "{}% ",
+        "format": "{used:0.1f}G/{total:0.1f}G ",
 	"on-click": "alacritty -t popup -e gotop"
     },
     "temperature": {
@@ -74,21 +73,21 @@
     "path": "/home",
     "on-click": "alacritty -t popup -e ranger"
     },
-    //"battery": {
-    //    "bat": "BAT0",
-    //    "states": {
-    //        // "good": 95,
-    //        "warning": 30,
-    //        "critical": 15
-    //    },
-    //    "format": "{capacity}% {icon}",
-    //    // "format-good": "", // An empty format will hide the module
-    //    // "format-full": "",
-    //    "format-icons": ["", "", "", "", ""]
-    //},
+    "battery": {
+        "bat": "BAT0",
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "format-good": "", // An empty format will hide the module
+        "format-full": "",
+        "format-icons": ["", "", "", "", ""]
+    },
     "network": {
-        // "interface": "wlp2s0", // (Optional) To force the use of this interface
-        "format-wifi": "{signalStrength}% ", // Add {essid} to display WiFi SSID
+        // "interface": "wlp4s0", // (Optional) To force the use of this interface
+        "format-wifi": "⬆: {bandwidthUpBits} ⬇: {bandwidthDownBits} ", // Add {essid} to display WiFi SSID
         "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
         "format-disconnected": "Disconnected ⚠",
 	"on-click": "if [ $(nmcli radio wifi) = enabled ]; then nmcli radio wifi off; else nmcli radio wifi on; fi",

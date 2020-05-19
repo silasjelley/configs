@@ -1,3 +1,13 @@
+" For ledger
+au BufNewFile,BufRead *.ledger setf ledger | comp ledger
+let g:ledger_maxwidth = 120
+let g:ledger_fold_blanks = 1
+function LedgerSort()
+    :%! hledger -f - print
+    :%LedgerAlign
+endfunction
+command! LedgerSort call LedgerSort()
+
 function! ParseAMEX()
     " Remove commas from 4 fig sums
     %g/\"\d\+,\d\+\.\d\d/norm $F,x\"

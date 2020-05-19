@@ -1,12 +1,11 @@
 # PATH
-export PATH=$PATH:$HOME/Binaries
-export PATH=$PATH:$HOME/Projects/Scripts
-export PATH=$PATH:$HOME/.cargo/bin
-export PATH=$PATH:$HOME/.local/bin
+export PATH=$HOME/Binaries:$PATH
+export PATH=$HOME/Projects/Scripts:$PATH
+export PATH=$HOME/.cargo/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
 # Environment
 export EDITOR=nvim
 export VISUAL="$EDITOR"
-export TERM="alacritty"
 export MAKEFLAGS="-j$(nproc)" # Used by arch's makepkg to enable multi-core package building
 # Keyring
 export GPG_TTY=$(tty) # Tell gnupg where to prompt for pinentry
@@ -22,6 +21,7 @@ export MORE_FILE="$HOME/Records/Memory/more.txt"
 
 # Directories
 export NOTES_DIR="$HOME/Records/Notes"
+export LOG_DIR="$HOME/Archive/Log"
 
 # Firefox
 export GDK_BACKEND=wayland
@@ -34,7 +34,9 @@ export MOZ_WEBRENDER=1
 export BORG_REPO="e0qp2z9l@e0qp2z9l.repo.borgbase.com:repo"
 export BORG_PASSPHRASE="$(gopass find Systems/Wolfe/Borg/Password | sed '2q;d')"
 
+# Workaround to enable tray in waybar
+export XDG_CURRENT_DESKTOP="Unity"
 
 ## Copy environment variables to systemd
 mkdir -p $HOME/.config/environment.d
-cat .zshenv | head -n -4 | sed 's/export //' > $HOME/.config/environment.d/zshenv.conf
+cat $HOME/.zshenv | head -n -4 | sed 's/export //' > $HOME/.config/environment.d/zshenv.conf

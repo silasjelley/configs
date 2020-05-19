@@ -1,0 +1,38 @@
+#window { /* the window itself. */
+}
+
+#outer-box { /* the box that contains everything. */
+    background: #161821;
+}
+
+#input { /* the search bar. */
+    background: #161821;
+    color: #ffffff; 
+    border: none;
+}
+
+#scroll { /* the scrolled window containing all of the entries. */
+
+}
+
+#inner-box { /* the box containing all of the entries. */
+
+}
+
+#img { /* all images in entries displayed in image mode. */
+
+}
+
+#text { /* all the text in entries. */
+    color: #ffffff; 
+
+}
+
+#entry { /* all entries. */
+    padding-left: 30px;
+}
+
+#entry:selected { /* the selected entries. */
+    background: #1f1f1f;
+    left-border-color: red;
+}

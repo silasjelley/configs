@@ -43,8 +43,7 @@ font:
 colors:
       # Default colors
   primary:
-    background: '0x161821'
-    foreground: '0xd2d4de' 
+    background: '0x12171B'
   normal:
     black:   '0x161821'
     red:     '0xe27878'

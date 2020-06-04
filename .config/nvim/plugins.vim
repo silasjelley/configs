@@ -17,5 +17,8 @@ Plug 'machakann/vim-highlightedyank',{'as':'highlightedyank'}
 " Ledger Support
 Plug 'ledger/vim-ledger',{'as':'ledger'}
 
+" Hexokinase - asynchronously displaying the colours in the file
+Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
+
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()

@@ -29,15 +29,13 @@ window box > box{
 }
 
 #workspaces button:hover {
-  background: rgba(0, 0, 0, 0.2);
   box-shadow: inherit;
-  color: purple;
   /* border-bottom: 3px solid #ffffff; */
 }
 
 #workspaces button.focused {
-	/* background: grey;
-    border: 1px solid white; */
+	background: grey;
+    border: 1px solid white;
 	color: white;
 }
 

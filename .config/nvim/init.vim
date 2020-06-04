@@ -66,9 +66,10 @@ set completeopt=menuone,preview,noinsert
 " Syntax highlighting and rules for specific files
 " autocmd BufNewFile,BufRead *.txt Limelight | set spell
 autocmd BufNewFile,BufRead *.md set spell
-autocmd BufNewFile,BufRead bookmarks.txt | set syntax=notes | set nospell
-autocmd BufNewFile,BufRead quotes.txt set syntax=notes
-autocmd BufNewFile,BufRead todo.txt set syntax=todo
-autocmd BufNewFile,BufRead more.txt set syntax=todo
-autocmd BufNewFile,BufRead journal.txt set syntax=todo
-autocmd BufNewFile,BufRead time.txt set syntax=notes
+autocmd BufNewFile,BufRead *.txt set syntax=markdown | set spell | set textwidth=80
+autocmd BufNewFile,BufRead links.txt | set syntax=todo | set nospell | set textwidth=0
+autocmd BufNewFile,BufRead quotes.txt set syntax=notes | set textwidth=0
+autocmd BufNewFile,BufRead todo.txt set syntax=todo | set textwidth=0
+autocmd BufNewFile,BufRead more.txt set syntax=todo | set textwidth=0
+autocmd BufNewFile,BufRead daily.txt set syntax=todo
+autocmd BufNewFile,BufRead hourly.txt set syntax=notes | set textwidth=0

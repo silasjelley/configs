@@ -8,6 +8,11 @@ endif
 
 set nowrap
 
+" Tags
+syn match tag_all    '#\a*'    | hi tag_all    gui=bold
+syn match tag_urgent '.*#urgent' | hi tag_urgent gui=bold guifg=orange
+
+" Priority etc
 syntax  match  TodoDone       '^[xX]\s.\+$'
 syntax  match  TodoPriorityA  '^([aA])\s.\+$'             contains=TodoDate,TodoProject,TodoContext,OverDueDate
 syntax  match  TodoPriorityB  '^([bB])\s.\+$'             contains=TodoDate,TodoProject,TodoContext,OverDueDate
@@ -31,8 +36,6 @@ highlight  default  link  TodoContext    Special
 " Keywords
 syn match word_todo 'TODO' | hi word_todo gui=bold guifg=#ffb86c
 syn match word_done 'DONE' | hi word_done gui=bold guifg=#50fa7b
-syn match word_main 'MAIN' | hi word_main gui=bold guifg=#ffb86c
-syn match word_more 'MORE' | hi word_more gui=bold guifg=pink
 
 
 let b:current_syntax = "todo"

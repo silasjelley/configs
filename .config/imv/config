@@ -3,7 +3,7 @@ background = #161821
 title_text = [$imv_current_index/$imv_file_count] [$imv_width'x'$imv_height] [$imv_scale%] $(basename $imv_current_file)
 overlay = false
 overlay_font = Monospace:16
-overlay_text = [$imv_current_index/$imv_file_count] [$imv_width'x'$imv_height] [$imv_scale%] $(basename $imv_current_file)
+# overlay_text = [$imv_current_index/$imv_file_count] [$imv_width'x'$imv_height] [$imv_scale%] $(basename $imv_current_file)
 suppress_default_binds = true
 
 [binds]

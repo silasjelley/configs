@@ -4,7 +4,7 @@
     # Modifier Key
     set $mod Mod4
     # Scripts Directory
-    set $script $HOME/Projects/Scripts
+    set $script $HOME/projects/scripts
 
 ### Startup
     ### Status Bar
@@ -16,8 +16,6 @@
 	bindsym $mod+n exec makoctl dismiss
     # Start Spotify Daemon
     exec spotifyd
-    # Start wob daemon
-    exec mkfifo $SWAYSOCK.wob && tail -f $SWAYSOCK.wob | wob
 	# Start keyring daemon
 	#exec gnome-keyring-daemon
 
@@ -32,7 +30,7 @@
     # Scratchpad 
 	exec $term --title Scratch 
     for_window [app_id="$term" title="Scratch"] floating enable, sticky enable, move to scratchpad, \
-	resize set width 40 ppt height 60 ppt
+    resize set width 60 ppt height 60 ppt
     bindsym $mod+Grave scratchpad show
 	bindsym $mod+Shift+Grave move scratchpad
 
@@ -43,19 +41,12 @@
 	# Layout Chooser
 	exec alacritty -t Launcher -e bash -c 'compgen -c | fzf -e --no-sort --history $HOME/.fzf_history -q layout- --margin 1 | xargs -r swaymsg -t command exec'
     # Application Launcher
-    #bindsym $mod+d exec "alacritty -t Launcher -e $HOME/Projects/Scripts/system-launcher"
-    #set $menu dmenu_path | wofi --show drun -i | xargs swaymsg exec --¬ ## Wofi version
     set $menu $term -t Launcher -e zsh -c 'fd . -e desktop /usr/share/app* | \
 	xargs basename -s .desktop -a | fzf -e --history $HOME/.fzf_history |    \
 	xargs -r swaymsg -t command exec'
     bindsym $mod+d exec $menu 
     # Fuzzy Launcher 
     bindsym $mod+Shift+d exec $term -t Launcher -e bash -c 'compgen -c | fzf -e --no-sort --history $HOME/.fzf_history --margin 1,2 | xargs -r swaymsg -t command exec'
-
-### Password Manager
-	for_window [app_id="kitty" title="Password Manager"] floating enable, sticky enable, resize set height 220 px
-	set $pass kitty --title "Password Manager" ripasso-cursive
-	bindsym $mod+m exec $pass
 
 ### Calculator
     for_window [app_id="$term" title="Calculator"] floating enable, layout tabbed, sticky enable, resize set width 500 px height 700 px
@@ -73,6 +64,7 @@
 
 ### Document Viewer
 	for_window [class="MuPDF"] floating enable, border pixel
+	for_window [app_id="zathura"] floating enable, border pixel, resize set width 30 ppt height 80 ppt
 
 ### Lockscreen
     #set $lock "system-lock && swaylock"
@@ -80,7 +72,7 @@
 
 ### Screenshot
     # Screenshot Directory
-    set $screendir $HOME/Archive/Systems/Wolfe/Screens
+    set $screendir $HOME/archive/systems/wolfe/screens
     # Whole screen
     bindsym Print exec IMG=$screendir/$(date +%Y-%m-%d_%H-%M-%S).png && grim $IMG && wl-copy < $IMG && \
 	notify-send "Screenshot saved to: $IMG"
@@ -89,7 +81,8 @@
 	wl-copy < $IMG && notify-send "Screenshot saved to: $IMG"
 
 ### Color Picker
-    bindsym $mod+Shift+f exec 'farge --image-viewer imv'
+    bindsym $mod+Shift+f exec 'farge'
+    #bindsym $mod+Shift+f exec 'farge --image-viewer imv'
 
 ### Idle
     #exec swayidle -w \
@@ -130,7 +123,8 @@
     for_window [app_id="$term" title="popup"] floating enable, resize set width 25 ppt height 25 ppt, move position 2830 5
     
     ### Persist mpv on all Workspaces
-    for_window [app_id="mpv"] sticky enable, floating enable, move position 2600 1450
+    # for_window [app_id="mpv"] sticky enable, floating enable, move position 2600 1450
+    for_window [app_id="mpv"] sticky enable, floating enable
 
 
 ## Key bindings
@@ -169,7 +163,6 @@ input * xkb_numlock enabled
   mode "nag" {
     bindsym {
       Ctrl+d    mode "default"
-      Ctrl+c    $nag_exit
       q         $nag_exit
       Escape    $nag_exit
       Return    $nag_confirm
@@ -181,26 +174,30 @@ input * xkb_numlock enabled
       Down      $nag_select prev
     }
   }
-  bindsym {
-    $mod+Shift+e $nag -t "warning" -m "Exit Sway?" -b "Exit" "swaymsg exit" -b "Reload" "swaymsg reload"
-  }
-  # -R is recommended for swaynag_command so that, upon a syntax error in your sway config, the
-  # 'Reload Sway' option will be initially selected instead of the 'Exit Sway' option
-  swaynag_command $nag -R
+  bindsym $mod+Shift+e $nag -R \
+    -t "warning" -m "Exit Sway?" \
+    -b "Exit" "swaymsg exit" \
+    -b "Reload" "swaymsg reload" \
+    --background 161821 \
+    --border-bottom ffffff \
+    --border-bottom-size 0 \
+    --button-border-size 0 \
+    --button-background 313131 \
+    --text ffffff
 
 ### Media Keys
-   
-    
-    #bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
-    #bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
-    bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+    # TODO Detect mute status and have wob show 0 
+    # when mute is set else show volume level
+    bindsym XF86AudioMute exec pamixer --toggle-mute 
     bindsym XF86AudioPlay exec playerctl play-pause
     bindsym XF86AudioNext exec playerctl next
     bindsym XF86AudioPrev exec playerctl previous
 
     # Uses wob to display volume level visually
-    bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+ unmute && amixer sget Master | grep 'Right:' | awk -F'[][]' '{ print substr($2, 0, length($2)-1) }' > $SWAYSOCK.wob
-    bindsym XF86AudioLowerVolume exec amixer -q set Master 5%- unmute && amixer sget Master | grep 'Right:' | awk -F'[][]' '{ print substr($2, 0, length($2)-1) }' > $SWAYSOCK.wob
+    # Start wob daemon
+    exec mkfifo $SWAYSOCK.wob && tail -f $SWAYSOCK.wob | wob --bar-color "#2e3440"
+    bindsym XF86AudioRaiseVolume exec pamixer --unmute --increase 5 && pamixer --get-volume > $SWAYSOCK.wob
+    bindsym XF86AudioLowerVolume exec pamixer --unmute --decrease 5 && pamixer --get-volume > $SWAYSOCK.wob
     #bindsym XF86AudioMute exec (amixer get Master | grep off > /dev/null && amixer -q set Master unmute && amixer sget Master | grep 'Right:' | awk -F'[][]' '{ print substr($2, 0, length($2)-1) }' > $SWAYSOCK.wob) || (amixer -q set Master mute && echo 0 > $SWAYSOCK.wob)
 
 ### Moving around:
@@ -272,10 +269,7 @@ input * xkb_numlock enabled
     seat seat0 hide_cursor 5000
 
 ### Layout Control:
-
-    # You can "split" the current object of your focus with
-    # $mod+b or $mod+v, for horizontal and vertical splits
-    # respectively.
+    # for horizontal and vertical splits respectively.
     bindsym $mod+b splith
     bindsym $mod+v splitv
 
@@ -297,24 +291,14 @@ input * xkb_numlock enabled
     bindsym $mod+a focus parent
 
 ### Scratchpad:
-
-    # Sway has a "scratchpad", which is a bag of holding for windows.
-    # You can send windows there and get them back later.
-
     # Move the currently focused window to the scratchpad
     bindsym $mod+Shift+minus move scratchpad
 
     # Show the next scratchpad window or hide the focused scratchpad window.
-    # If there are multiple scratchpad windows, this command cycles through them.
     bindsym $mod+minus scratchpad show
 
 ### Resizing containers:
-
     mode "resize" {
-	# left will shrink the containers width
-	# right will grow the containers width
-	# up will shrink the containers height
-	# down will grow the containers height
 	bindsym $left resize shrink width 20px
 	bindsym $down resize grow height 20px
 	bindsym $up resize shrink height 20px

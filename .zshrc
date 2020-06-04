@@ -26,6 +26,7 @@
   alias dnfr="sudo dnf remove"
   alias dnfu="sudo dnf upgrade"
   ## Edit Configs
+  alias egit="$EDITOR $HOME/.config/git/config"
   alias ezsh="$EDITOR $HOME/.zshrc"
   alias eenv="$EDITOR $HOME/.zshenv"
   alias rzsh="exec zsh"
@@ -53,18 +54,10 @@
   alias enewsboaturls="$EDITOR $HOME/.config/newsboat/urls"
   alias effxchrome="$EDITOR $HOME/.mozilla/firefox/silasjelley/chrome/userChrome.css"
   alias effxcontent="$EDITOR $HOME/.mozilla/firefox/silasjelley/chrome/userContent.css"
-  alias epackages-base="$EDITOR $HOME/Records/Notes/Systems/Wolfe/packages-base"
-  alias epackages-devel="$EDITOR $HOME/Records/Notes/Systems/Wolfe/packages-devel"
-  alias epackages-remove="$EDITOR $HOME/Records/Notes/Systems/Wolfe/packages-remove"
-  alias epackages-sundry="$EDITOR $HOME/Records/Notes/Systems/Wolfe/packages-sundry"
-  alias epackages-utils="$EDITOR $HOME/Records/Notes/Systems/Wolfe/packages-utils"
   ## Arduino
   alias arduino="arduino-cli --config-file $HOME/.config/arduion/arduino-cli.yaml"
   alias arduino-cli="arduino-cli --config-file $HOME/.config/arduion/arduino-cli.yaml"
   alias earduino="$EDITOR $HOME/.config/arduion/arduino-cli.yaml"
-  ## Buku
-  #alias bma="buku -a"
-  #alias bms="buku -s"
   ## Git
   alias gc="git commit -S -v $1"
   alias ga="git add $1"
@@ -83,34 +76,17 @@
   alias pm="gopass move"
   alias pe="gopass edit --create"
   ## Journaling / Record Keeping
-  #alias journal="record-journal"
-  alias weight="record-health -weight"
-  alias slept="record-health -sleep"
-  alias quote="record-quote"
+  alias journal="$EDITOR $JOURNAL_DAILY"
+  alias quote="$EDITOR $QUOTE_FILE"
   alias note="record-note"
-  alias log="$EDITOR $HOME/Records/Memory/time.txt"
+  alias log="$EDITOR $JOURNAL_HOURLY"
   alias more="$EDITOR $MORE_FILE"
   alias bm="$EDITOR $BOOKMARKS_FILE"
   ## Ledger
-  alias groceries="hledger -f ~/Records/Ledger/Groceries/groceries.ledger"
+  alias groceries="hledger -f $HOME/projects/groceries/2020.ledger"
   ## Newsboat
   alias nb="newsboat"
   ## Tasks
-  alias t="task"
-  #alias ta="task add"
-  #alias tl="task log"
-  #alias td="task done"
-  #alias ts="task sync"
-  #alias tm="task modify"
-  #alias todo="task due or scheduled:today"
-  #alias chore="task add project:Evans +Chores"
-  #alias urgent="task add +Reminder +Urgent due:today"
-  #alias remind="task add +Reminder" 
-  #alias tcloud="task add project:Cloud +Config"
-  #alias twolfe="task add project:Wolfe +Config"
-  #alias tpanda="task add project:Panda +Config"
-  #alias tsefna="task add project:Sefna +Cloud"
-  #alias tevans="task add project:Evans"
   alias todo="$EDITOR $TODO_FILE"
   alias moretodo="$EDITOR $MORE_FILE"
   ## Time
@@ -118,6 +94,7 @@
   #  ## Youtube-DL
   alias ydl="youtube-dl"
   ## Misc
+  alias exat="exa -TL1 --group-directories-first"
   alias epoch="date +%s"
   alias blogtree="exa -TL1 --group-directories-first --ignore-glob=\"Caddyfile|node_modules|package*\" $HOME/Projects/Blog"
 
@@ -147,7 +124,7 @@ setopt hist_ignore_space
 setopt appendhistory
 
 # Antigen Config
-source $HOME/Binaries/antigen.zsh
+source $HOME/.local/bin/antigen.zsh
 
 ## Packages
 antigen use oh-my-zsh

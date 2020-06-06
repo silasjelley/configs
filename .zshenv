@@ -13,11 +13,13 @@ export GPG_TTY=$(tty) # Tell gnupg where to prompt for pinentry
   eval $(gnome-keyring-daemon --start) # start the keyring daemon
 
 # Files
-export BOOKMARKS_FILE="$HOME/notes/lists/links.txt"
+export JOURNAL_LIFE="$HOME/journal/life.txt"
+export JOURNAL_WEEKLY="$HOME/journal/weekly.txt"
 export JOURNAL_DAILY="$HOME/journal/daily.txt"
 export JOURNAL_HOURLY="$HOME/journal/hourly.txt"
 export LEDGER_FILE="$HOME/ledger/full.ledger"
 export QUOTE_FILE="$HOME/notes/lists/quotes.txt"
+export LINKS_FILE="$HOME/notes/lists/links.txt"
 export TODO_FILE="$HOME/journal/todo.txt"
 export MORE_FILE="$HOME/journal/more.txt"
 

@@ -15,16 +15,6 @@
   alias v="vim"
   alias nv="nvim"
   alias e="$EDITOR"  
-  ## Package Management
-  # pacman
-  alias pkg="sudo pacman -S --needed"
-  alias pkgr="sudo pacman -Rs"
-  alias pkgs="pacman -Ss"
-  alias pkgq="pacman -Qqs"
-  # DNF
-  alias dnfi="sudo dnf install"
-  alias dnfr="sudo dnf remove"
-  alias dnfu="sudo dnf upgrade"
   ## Edit Configs
   alias egit="$EDITOR $HOME/.config/git/config"
   alias ezsh="$EDITOR $HOME/.zshrc"
@@ -50,8 +40,7 @@
   alias erangercom="$EDITOR $HOME/.config/ranger/commands.py"
   alias erifle="$EDITOR $HOME/.config/ranger/rifle.conf"
   alias eimv="$EDITOR $HOME/.config/imv/config"
-  alias enewsboat="$EDITOR $HOME/.config/newsboat/config"
-  alias enewsboaturls="$EDITOR $HOME/.config/newsboat/urls"
+  alias egopass="$EDITOR $HOME/.config/gopass/config.yml"
   alias effxchrome="$EDITOR $HOME/.mozilla/firefox/silasjelley/chrome/userChrome.css"
   alias effxcontent="$EDITOR $HOME/.mozilla/firefox/silasjelley/chrome/userContent.css"
   ## Arduino
@@ -76,22 +65,18 @@
   alias pm="gopass move"
   alias pe="gopass edit --create"
   ## Journaling / Record Keeping
-  alias journal="$EDITOR $JOURNAL_DAILY"
-  alias quote="$EDITOR $QUOTE_FILE"
   alias note="record-note"
-  alias log="$EDITOR $JOURNAL_HOURLY"
+  alias life="$EDITOR $JOURNAL_LIFE"
+  alias weekly="$EDITOR $JOURNAL_WEEKLY"
+  alias daily="$EDITOR $JOURNAL_DAILY"
+  alias hourly="$EDITOR $JOURNAL_HOURLY"
+  alias quotes="$EDITOR $QUOTE_FILE"
+  alias links="$EDITOR $LINKS_FILE"
+  alias todo="$EDITOR $TODO_FILE"
   alias more="$EDITOR $MORE_FILE"
-  alias bm="$EDITOR $BOOKMARKS_FILE"
   ## Ledger
   alias groceries="hledger -f $HOME/projects/groceries/2020.ledger"
-  ## Newsboat
-  alias nb="newsboat"
-  ## Tasks
-  alias todo="$EDITOR $TODO_FILE"
-  alias moretodo="$EDITOR $MORE_FILE"
-  ## Time
-  alias tw="timew"
-  #  ## Youtube-DL
+  ## Youtube-DL
   alias ydl="youtube-dl"
   ## Misc
   alias exat="exa -TL1 --group-directories-first"

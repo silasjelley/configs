@@ -53,7 +53,7 @@
   alias gp="git push -u origin master"
   alias gs="git status"
   alias gr="git reset $1"
-  alias gl="git log"
+  alias gl="git log --graph"
   alias grr="git reset 'HEAD@{1}'"
   ## Gopass
   alias pass="gopass"

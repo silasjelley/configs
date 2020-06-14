@@ -132,6 +132,8 @@
 # Turn numlock on
 input * xkb_numlock enabled
 
+# bindsym xkb_capslock Escape
+
 ### Basics:
 
     # Home Row Keys
@@ -317,7 +319,7 @@ input * xkb_numlock enabled
 	bindsym $mod+r mode "resize"
 
 # Enable Xwayland support, which allows X11 applications to be used.
-xwayland disable
+xwayland enable
 
 # Inhibit idle on full screen windows 
 for_window [class="^.*"] inhibit_idle fullscreen

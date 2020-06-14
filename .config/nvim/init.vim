@@ -27,7 +27,7 @@ set updatetime=300      " Rapidly write changes to swap
 scriptencoding utf-8    " Set encoding for vim scripts
 
 set mouse=a             " Enable mouse
-set textwidth=80        " Hard wrap long lines as you type them
+" set textwidth=80      " Hard wrap long lines as you type them
 set scrolloff=3         " Show next 3 lines while scrolling
 set sidescrolloff=5     " Show next 5 columns while side-scrolling
 set number              " Enable line numbers
@@ -65,8 +65,9 @@ set completeopt=menuone,preview,noinsert
 
 " Syntax highlighting and rules for specific files
 " autocmd BufNewFile,BufRead *.txt Limelight | set spell
-autocmd BufNewFile,BufRead *.md set spell
+autocmd BufNewFile,BufRead *.md set spell | set textwidth=80
 autocmd BufNewFile,BufRead *.txt set syntax=markdown | set spell | set textwidth=80
+autocmd BufNewFile,BufRead *.ledger set nowrap
 autocmd BufNewFile,BufRead links.txt | set syntax=todo | set nospell | set textwidth=0
 autocmd BufNewFile,BufRead quotes.txt set syntax=notes | set textwidth=0
 autocmd BufNewFile,BufRead todo.txt set syntax=todo | set textwidth=0

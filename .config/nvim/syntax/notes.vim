@@ -25,12 +25,11 @@ endif
         syn match char_cret '  > ' | hi char_cret guifg=orange
         syn match char_plus '  + ' | hi char_plus guifg=#50fa7b
         syn match task_done '^x .*' | hi task_done guifg=#44475a
+        " Active task (determined to be and block that has a beginning time but no end)
+        syn match task_active '^\d\d:\d\d - .*' | highlight default link task_active PreProc
         " Date & time
         syn match date '\d\d\d\d-\d\d-\d\d ' | hi date guifg=#44475a
         syn match time '\d\d:\d\d - \d\d:\d\d' | hi time guifg=#44475a
-        " Active task (determined to be and block that has a beginning time
-        " but no end)
-        syn match task_active '^\d\d:\d\d - \a.*' | highlight default link task_active PreProc
 
     " Bookmarks
 

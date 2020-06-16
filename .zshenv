@@ -1,8 +1,5 @@
 # PATH
-export PATH=$HOME/.npm/bin:$PATH
-export PATH=$HOME/.cargo/bin:$PATH
-export PATH=$HOME/.local/bin:$PATH
-export PATH=$HOME/projects/scripts:$PATH
+export PATH="$HOME/projects/scripts:$HOME/.local/bin:$HOME/.cargo/bin:$HOME/.npm/bin:$PATH"
 # Environment
 export TERM="xterm-256color"
 export EDITOR="nvim"
@@ -35,8 +32,7 @@ export MOZ_ENABLE_WAYLAND=1
 export MOZ_WEBRENDER=1
 
 # Borg
-export BORG_REPO="e0qp2z9l@e0qp2z9l.repo.borgbase.com:repo"
-export BORG_PASSPHRASE="$(gopass find Keys/Wolfe/Borg/Password | sed '2q;d')"
+export BORG_REPO="$(gopass show keys/wolfe/borg/url)"
 
 # Workaround to enable tray in waybar
 export XDG_CURRENT_DESKTOP="Unity"

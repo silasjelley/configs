@@ -9,11 +9,14 @@ if exists("b:current_syntax")
   finish
 endif
 
+" Disable hexokinase color preview
+HexokinaseTurnOff
+
 " Syntax highlighting
     " Shared
         syn match note_title '\a*' | hi bm_title guifg=#bd93f9
         " Tags beginning with #
-        syn match note_tag '#\a\+' | hi note_tag guifg=#6272a4
+        syn match note_tag '#\a\+' | hi note_tag guifg=#B4BE82
         " URLs
         syn match note_url 'http://..*' | syn match note_url 'https://.*' | hi note_url guifg=#ababab
         " Keywords
@@ -25,13 +28,12 @@ endif
         syn match char_cret '  > ' | hi char_cret guifg=orange
         syn match char_plus '  + ' | hi char_plus guifg=#50fa7b
         syn match task_done '^x .*' | hi task_done guifg=#44475a
-        " Active task (determined to be and block that has a beginning time but no end)
-        syn match task_active '^\d\d:\d\d - .*' | highlight default link task_active PreProc
+        " Active task (determined to be a block that has a beginning time but no end)
+        syn match task_active '^\d\d:\d\d - .*' | hi task_active gui=bold guifg=white guibg=#44475a
         " Date & time
-        syn match date '\d\d\d\d-\d\d-\d\d ' | hi date guifg=#44475a
         syn match time '\d\d:\d\d - \d\d:\d\d' | hi time guifg=#44475a
+        syn match date '>> \d\d\d\d-\d\d-\d\d' | hi date gui=bold guifg=#44475a
+        "syn match date '\d\d\d\d-\d\d-\d\d ' | hi date guifg=#44475a
 
     " Bookmarks
 
-    " Logbook
-    syn match log_divider '=============' | hi log_divider guifg=#6272a4

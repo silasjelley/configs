@@ -65,7 +65,11 @@
   alias pm="gopass move"
   alias pe="gopass edit --create"
   ## Journaling / Record Keeping
-  alias note="record-note"
+  alias notes="record-note"
+  alias n="record-note"
+  alias ns="record-note search"
+  alias nl="record-note list"
+  alias np="record-note print"
   alias life="$EDITOR $JOURNAL_LIFE"
   alias weekly="$EDITOR $JOURNAL_WEEKLY"
   alias daily="$EDITOR $JOURNAL_DAILY"

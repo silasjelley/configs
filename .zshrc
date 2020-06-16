@@ -44,9 +44,9 @@
   alias effxchrome="$EDITOR $HOME/.mozilla/firefox/silasjelley/chrome/userChrome.css"
   alias effxcontent="$EDITOR $HOME/.mozilla/firefox/silasjelley/chrome/userContent.css"
   ## Arduino
-  alias arduino="arduino-cli --config-file $HOME/.config/arduion/arduino-cli.yaml"
-  alias arduino-cli="arduino-cli --config-file $HOME/.config/arduion/arduino-cli.yaml"
-  alias earduino="$EDITOR $HOME/.config/arduion/arduino-cli.yaml"
+  alias arduino="arduino-cli --config-file $HOME/.config/arduino/arduino-cli.yaml"
+  alias arduino-cli="arduino-cli --config-file $HOME/.config/arduino/arduino-cli.yaml"
+  alias earduino="$EDITOR $HOME/.config/arduino/arduino-cli.yaml"
   ## Git
   alias gc="git commit -S -v $1"
   alias ga="git add $1"
@@ -55,6 +55,7 @@
   alias gr="git reset $1"
   alias gl="git log --graph"
   alias grr="git reset 'HEAD@{1}'"
+  alias gsa="status-git"
   ## Gopass
   alias pass="gopass"
   alias passc="gopass -c"

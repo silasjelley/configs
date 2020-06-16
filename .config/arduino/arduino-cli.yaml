@@ -1,0 +1,12 @@
+board_manager:
+  additional_urls: []
+daemon:
+  port: "50051"
+directories:
+  data: /home/silas/.cache/arduino/data
+  downloads: /home/silas/.cache/arduino/downloads
+  user: /home/silas/projects/arduino
+logging:
+  file: ""
+  format: text
+  level: info

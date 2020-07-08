@@ -9,9 +9,12 @@ noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
 
-" Switch to next/previous buffer
+"Buffers
+" Switch to next/previous
 nnoremap <C-n> :bnext<CR>
 nnoremap <C-p> :bprevious<CR>
+" Display list of open buffers and prompt for a number
+:nnoremap <F5> :buffers<CR>:buffer<Space>
 
 " Move by one line (allows vim like movement even when dealing with paras
 nnoremap j gj
@@ -34,6 +37,12 @@ inoremap <F3> <C-R>=strftime("%Y-%m-%d ")<CR>
 nnoremap <F4> i<C-R>=strftime("%H-%M-%S  ")<CR><esc>
 inoremap <F4> <C-R>=strftime("%H-%M-%S ")<CR>
 
+" Prepend time to current line
+nnoremap <leader>tt 0i<C-R>=strftime("%H:%M ")<CR><esc>A<C-o><esc>
+
+" Prepend time to current line after first time
+nnoremap <leader>hh 05la<C-R>=strftime("%H:%M ")<CR><esc>A<C-o><esc>
+
 " Prepend 'x $DATE' to line and move to end of file
 nnoremap <leader>xx 0i<C-R>=strftime("x %Y-%m-%d ")<CR><esc>ddGp<C-o><esc>
 
@@ -42,9 +51,6 @@ nnoremap <leader>cc lF>xi+<esc>
 
 " Return to normal mode
 inoremap jk <esc>
-
-" Delete current word from insert mode
-inoremap jh <C-O>:normal bdw<CR>
 
 " Toggle spellcheck
 nnoremap <F7> :set spell! spell?<CR>

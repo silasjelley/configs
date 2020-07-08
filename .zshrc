@@ -43,6 +43,8 @@
   alias egopass="$EDITOR $HOME/.config/gopass/config.yml"
   alias effxchrome="$EDITOR $HOME/.mozilla/firefox/silasjelley/chrome/userChrome.css"
   alias effxcontent="$EDITOR $HOME/.mozilla/firefox/silasjelley/chrome/userContent.css"
+  alias eaerc="$EDITOR $HOME/.config/aerc/aerc.conf"
+  alias eaercbind="$EDITOR $HOME/.config/aerc/binds.conf"
   ## Arduino
   alias arduino="arduino-cli --config-file $HOME/.config/arduino/arduino-cli.yaml"
   alias arduino-cli="arduino-cli --config-file $HOME/.config/arduino/arduino-cli.yaml"
@@ -50,7 +52,7 @@
   ## Git
   alias gc="git commit -S -v $1"
   alias ga="git add $1"
-  alias gp="git push -u origin master"
+  alias gp="git push -qu origin master"
   alias gs="git status"
   alias gr="git reset $1"
   alias gl="git log --graph"
@@ -77,16 +79,23 @@
   alias hourly="$EDITOR $JOURNAL_HOURLY"
   alias quotes="$EDITOR $QUOTE_FILE"
   alias links="$EDITOR $LINKS_FILE"
+  alias feeds="$EDITOR $HOME/notes/lists/feeds.txt"
   alias todo="$EDITOR $TODO_FILE"
-  alias more="$EDITOR $MORE_FILE"
   ## Ledger
   alias groceries="hledger -f $HOME/projects/groceries/2020.ledger"
+  ## Newsboat
+  alias nb="newsboat --url-file=$HOME/notes/lists/feeds.txt"
+  alias enb="$EDITOR $HOME/.config/newsboat/config"
+  alias enburl="$EDITOR $HOME/.config/newsboat/urls"
   ## Youtube-DL
   alias ydl="youtube-dl"
   ## Misc
   alias exat="exa -TL1 --group-directories-first"
   alias epoch="date +%s"
   alias blogtree="exa -TL1 --group-directories-first --ignore-glob=\"Caddyfile|node_modules|package*\" $HOME/Projects/Blog"
+  ## Automation
+  alias lamp-on="curl http://192.168.178.210/digital/5/0"
+  alias lamp-off="curl http://192.168.178.210/digital/5/1"
 
 # Options
   setopt always_to_end          # Move the cursor to the end of the word after each completion.

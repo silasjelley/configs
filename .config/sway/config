@@ -16,6 +16,8 @@
 	bindsym $mod+n exec makoctl dismiss
     # Start Spotify Daemon
     exec spotifyd
+    # Turn on bluetooth device
+    exec "bluetoothctl power on"
 	# Start keyring daemon
 	#exec gnome-keyring-daemon
 

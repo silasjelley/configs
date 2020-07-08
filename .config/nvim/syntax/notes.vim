@@ -31,9 +31,10 @@ HexokinaseTurnOff
         " Active task (determined to be a block that has a beginning time but no end)
         syn match task_active '^\d\d:\d\d - .*' | hi task_active gui=bold guifg=white guibg=#44475a
         " Date & time
+        " syn match time '^\(\(.*\d\d:\d\d \d\d:\d\d*\)\@!.\)*$' | hi time guifg=red
         syn match time '\d\d:\d\d - \d\d:\d\d' | hi time guifg=#44475a
         syn match date '>> \d\d\d\d-\d\d-\d\d' | hi date gui=bold guifg=#44475a
-        "syn match date '\d\d\d\d-\d\d-\d\d ' | hi date guifg=#44475a
+            "syn match date '\d\d\d\d-\d\d-\d\d ' | hi date guifg=#44475a
 
     " Bookmarks
 

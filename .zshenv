@@ -7,7 +7,7 @@ export VISUAL="$EDITOR"
 export MAKEFLAGS="-j$(nproc)" # Used by arch's makepkg to enable multi-core package building
 # Keyring
 export GPG_TTY=$(tty) # Tell gnupg where to prompt for pinentry
-  eval $(gnome-keyring-daemon --start) # start the keyring daemon
+#  eval $(gnome-keyring-daemon --start) # start the keyring daemon
 
 # Files
 export JOURNAL_LIFE="$HOME/journal/life.txt"
@@ -32,7 +32,7 @@ export MOZ_ENABLE_WAYLAND=1
 export MOZ_WEBRENDER=1
 
 # Borg
-export BORG_REPO="$(gopass show keys/wolfe/borg/url)"
+# export BORG_REPO="$(gopass show keys/wolfe/borg/url)"
 
 # Workaround to enable tray in waybar
 export XDG_CURRENT_DESKTOP="Unity"

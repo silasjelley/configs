@@ -81,6 +81,7 @@
   alias links="$EDITOR $LINKS_FILE"
   alias feeds="$EDITOR $HOME/notes/lists/feeds.txt"
   alias todo="$EDITOR $TODO_FILE"
+  alias scratch="$EDITOR $HOME/notes/scratch.md"
   ## Ledger
   alias groceries="hledger -f $HOME/projects/groceries/2020.ledger"
   ## Newsboat
